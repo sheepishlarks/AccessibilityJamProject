@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbc5ts5sajlse"]
 
 [ext_resource type="Script" uid="uid://b6pxo5grdshe6" path="res://input_response.gd" id="1_pj1c1"]
+[ext_resource type="PackedScene" uid="uid://d0etr287a5uq5" path="res://accessibility-jam/UI/response.tscn" id="2_autcl"]
 
 [node name="InputResponse" type="VBoxContainer" unique_id=371198699]
 offset_right = 40.0
@@ -13,6 +14,5 @@ theme_override_colors/font_color = Color(0.72156864, 0.7372549, 0.8235294, 1)
 theme_override_font_sizes/font_size = 13
 text = "this is what the user typed"
 
-[node name="Response" type="Label" parent="." unique_id=1541062811]
+[node name="Response" parent="." unique_id=1597887958 instance=ExtResource("2_autcl")]
 layout_mode = 2
-text = "this is what the game will give back"
