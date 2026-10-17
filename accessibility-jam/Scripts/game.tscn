@@ -17,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_anlq1")
+message = "You are an estate agent on a mission; there’s this studio apartment that your boss is desperate to see sold after yet another tenant has packed up and left in the middle of the night.  One problem though – it’s pitch-dark in there. The lights are busted, and unlike estate agents, electricians can’t be called out to work until the sun comes up. Your boss is breathing down your neck to get this property appraised ASAP, so there’s really nothing else for it. You’ve got the keys, you’ve climbed the stairs, now all you need to do is catalogue the room’s amenities. These are the big things – pieces of furniture/utilities that take up space, not the trinkets and knickknacks on top of them. There are 8 in total; one in each cardinal direction (to the North, East, South etc.). You’ll need to rely on your senses other than sight to figure out what these are. Good luck! "
 
 [node name="CommandProcessor" type="Node" parent="." unique_id=514267733]
 script = ExtResource("2_c25bl")
@@ -30,7 +31,8 @@ room_description = "north area description"
 
 [node name="South" parent="RoomManager" unique_id=1726959315 instance=ExtResource("3_c25bl")]
 room_name = "South"
-room_description = "south area description"
+room_description = "STAT: There is space on every side of you, except for the South, where you can feel a wall, and the "
+roomItems = ["Door", "piss"]
 
 [node name="SouthEast" parent="RoomManager" unique_id=43429430 instance=ExtResource("3_c25bl")]
 room_name = "South East"

@@ -27,7 +27,7 @@ func _ready() -> void:
 	handle_response_generated(starting_room_response)
 	var starting_message = Response.instantiate() 
 	starting_message.text = message
-	add_response_to_game(starting_message)
+	#add_response_to_game(starting_message)
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
