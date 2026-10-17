@@ -1,7 +1,13 @@
 extends Node
 
-var last_played_string: String
+signal response_generated(response_text)
 
+var last_played_string: String
+var current_room = null
+
+func initialise(starting_room) -> String: 
+	return change_room(starting_room)
+	
 # Called when the node enters the scene tree for the first time.
 func process_command( input: String) -> String:
 	var words = input.split(" ", false)
@@ -61,18 +67,35 @@ func process_command( input: String) -> String:
 		
 
 func go(second_word: String) -> String:
+		
 	match second_word:
 		"north", "n", "forward", "f", "up", "u":
-			return "You go north"
+			if current_room.exits.keys().has("north"):
+				var change_response = change_room(current_room.exits["north"])
+				return "You go north" + "\n" + change_response
+			else:
+				return "whoops thats a wall"
 			
 		"east", "e", "right", "r":
-			return "You go east"
+			if current_room.exits.keys().has("east"):
+				var change_response = change_room(current_room.exits["east"])				
+				return "You go east" + "\n" + change_response
+			else:
+				return "whoops thats a wall"
 			
 		"south", "s", "down", "d", "back", "b":
-			return "You go south"
+			if current_room.exits.keys().has("south"):
+				var change_response = change_room(current_room.exits["south"])
+				return "You go south" + "\n" + change_response
+			else:
+				return "whoops thats a wall"
 			
 		"west", "w", "left", "l":
-			return "You go west"
+			if current_room.exits.keys().has("west"):
+				var change_response = change_room(current_room.exits["west"])
+				return "You go west" + "\n" + change_response
+			else:
+				return "whoops thats a wall"
 		_:
 			return "Go where?"
 
@@ -113,3 +136,11 @@ func define(words: Array[String]) -> String:
 	
 	return "Before you is the %s" % Objectname
 	
+
+func change_room(new_room: Room) -> String: 
+	current_room = new_room
+	var exit_string = PackedStringArray([new_room.exits.keys()])
+	#var exit_string2.join(exit_string)
+	var strings = new_room.room_description + "\n" + "Exits: " + " ".join(exit_string)
+	#emit_signal("response_generated", strings)
+	return strings

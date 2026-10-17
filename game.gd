@@ -8,11 +8,16 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 
 @onready var history_rows = $Background/MarginContainer/Rows/GameInfo/ScrollContainer/HistoryRows
 @onready var command_processor = $CommandProcessor
+@onready var room_manager = $RoomManager
 
 func _ready() -> void: 
-	var starting_message = Response.instantiate() 
-	starting_message.text = message
-	add_response_to_game(starting_message)
+	#var starting_message = Response.instantiate() 
+	#starting_message.text = message
+	#add_response_to_game(starting_message)
+	handle_response_generated(message)
+	command_processor.response_generated.connect(handle_response_generated)
+	var starting_room_response = command_processor.initialise(room_manager.get_child(1))
+	handle_response_generated(starting_room_response)
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
@@ -23,6 +28,11 @@ func _on_input_text_submitted(new_text: String) -> void:
 	input_response.set_text(new_text, response)
 	add_response_to_game(input_response)
 	#history_rows.add_child(input_response)
+	
+func handle_response_generated(response_text: String): 
+	var response = Response.instantiate() 
+	response.text = response_text
+	add_response_to_game(response)
 
 func delete_history_beyond_limit(): 
 	if history_rows.get_child_count() > max_lines_remembered:

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d2mxtsg43he3p" path="res://CommandProcessor.gd" id="2_c25bl"]
 [ext_resource type="Script" uid="uid://ctf5vupa7buq3" path="res://input.gd" id="2_s1me1"]
 [ext_resource type="PackedScene" uid="uid://dx3a8apcy52xw" path="res://accessibility-jam/Scripts/room.tscn" id="3_c25bl"]
+[ext_resource type="Script" uid="uid://b8dx2varlavxq" path="res://accessibility-jam/Scripts/room_manager.gd" id="3_y28a1"]
 
 [node name="Game" type="Control" unique_id=490836244]
 layout_mode = 3
@@ -18,10 +19,19 @@ script = ExtResource("1_anlq1")
 script = ExtResource("2_c25bl")
 
 [node name="RoomManager" type="Node" parent="." unique_id=1885444420]
+script = ExtResource("3_y28a1")
 
 [node name="North" parent="RoomManager" unique_id=1907899534 instance=ExtResource("3_c25bl")]
 room_name = "North"
-room_description = "North section, window"
+room_description = "north area description"
+
+[node name="South" parent="RoomManager" unique_id=1726959315 instance=ExtResource("3_c25bl")]
+room_name = "South"
+room_description = "south area description"
+
+[node name="Centre" parent="RoomManager" unique_id=456425252 instance=ExtResource("3_c25bl")]
+room_name = "Centre"
+room_description = "centre area description"
 
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0
