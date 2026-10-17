@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bot0tkdhn8dey"]
+
+[ext_resource type="Script" uid="uid://c50yjmuhx4wwy" path="res://accessibility-jam/scriptsRoman/sfx_play.gd" id="1_5htya"]
+[ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="2_drkaq"]
+
+[node name="Button" type="Button" unique_id=2047678664]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -956.0
+offset_bottom = -576.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click"
+script = ExtResource("1_5htya")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=643416511]
+stream = ExtResource("2_drkaq")
+bus = &"SFX"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
