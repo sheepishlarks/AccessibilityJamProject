@@ -66,6 +66,25 @@ func process_command( input: String) -> String:
 			last_played_string = "slander is spoken. in print, it's libel."
 			return last_played_string	
 		
+		"haggis":
+			last_played_string = "ueee ueeeueueee uee uuu uueeee"
+			return last_played_string
+		
+		"disco":
+			last_played_string = """SHIVERS [Medium: Success] – Somewhere across the world, on
+			an isola that is still unobscured by entropic fog, one man is dying, 
+			and another is waking up for the first time in his life.
+			
+			YOU – Who is the man?
+			
+			KIM KITSURAGI – Detective? You've been standing there for 5
+			minutes. Let's get back to work."""
+			return last_played_string
+		
+		"dance":
+			last_played_string = "You dance."
+			return last_played_string
+		
 		
 		#else
 		_:
