@@ -44,7 +44,7 @@ func process_command( input: String) -> String:
 		"stat", "status":
 			last_played_string = status()
 			return last_played_string
-		"replay":
+		"replay", "last", "repeat", "old":
 			return last_played_string
 		_:
 			last_played_string = "Unrecognized command - please try again."
@@ -68,10 +68,10 @@ func go(second_word: String) -> String:
 			return "Go where?"
 
 func help() -> String:
-	return "Command List: ect ect"
+	return "TEMP Command List: ect ect"
 
 func status() -> String:
-	return "you have defined x objects, there are still x to define"
+	return "TEMP you have defined x objects, there are still x to define. you are in a location with things in it"
 
 func sense(sense: String, second_word: String):
 	#is the second word a valid object?
@@ -79,16 +79,16 @@ func sense(sense: String, second_word: String):
 	#what sense are you using?
 	match sense:
 		"smell":
-			return "you smell %s" % second_word
+			return "TEMP you smell %s" % second_word
 		
 		"touch", "feel":
-			return "you touch %s" % second_word
+			return "TEMP you touch %s" % second_word
 		
 		"taste":
-			return "you taste %s" % second_word
+			return "TEMP you taste %s" % second_word
 		
 		"hear", "listen":
-			return "you hear %s" % second_word
+			return "TEMP you hear %s" % second_word
 
 func define(words: Array[String]) -> String:
 	# check if object has already been defined
