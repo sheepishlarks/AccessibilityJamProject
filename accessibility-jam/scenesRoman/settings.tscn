@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://byylggmtc01p5"]
+
+[ext_resource type="Script" uid="uid://bn42aao7xi640" path="res://accessibility-jam/scriptsRoman/settings.gd" id="1_ypqld"]
+[ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="2_s2fsg"]
+
+[node name="Settings" type="Control" unique_id=1768086741]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ypqld")
+
+[node name="Container" type="VBoxContainer" parent="." unique_id=231128858]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 298.0
+offset_right = 1014.0
+offset_bottom = 443.0
+
+[node name="MasterLabel" type="Label" parent="Container" unique_id=1140285971]
+layout_mode = 2
+text = "Audio Volume"
+
+[node name="MasterSlider" type="HSlider" parent="Container" unique_id=1155800693]
+layout_mode = 2
+value = 70.0
+
+[node name="MusicLabel" type="Label" parent="Container" unique_id=259708399]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="Container" unique_id=367740052]
+layout_mode = 2
+value = 70.0
+
+[node name="SFXLabel" type="Label" parent="Container" unique_id=653097940]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXSlider" type="HSlider" parent="Container" unique_id=399282708]
+layout_mode = 2
+value = 70.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1552408454]
+stream = ExtResource("2_s2fsg")
+autoplay = true
+bus = &"Music"
+
+[connection signal="value_changed" from="Container/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Container/MusicSlider" to="." method="_on_audio_slider_value_changed"]
+[connection signal="value_changed" from="Container/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
