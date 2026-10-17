@@ -46,6 +46,15 @@ func process_command( input: String) -> String:
 			return last_played_string
 		"replay", "last", "repeat", "old":
 			return last_played_string
+			
+		#easter eggs
+		"xyzzy":
+			last_played_string = "'xyzzy' buzzes a bee as it flys by your ear."
+			return last_played_string	
+		
+		
+		
+		#else
 		_:
 			last_played_string = "Unrecognized command - please try again."
 			return last_played_string
