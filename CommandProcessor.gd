@@ -34,7 +34,7 @@ func process_command( input: String) -> String:
 		
 		#define
 		"define":
-			last_played_string = define(words)
+			last_played_string = define(words.slice(1))
 			return last_played_string
 		
 		#player help
@@ -93,10 +93,14 @@ func sense(sense: String, second_word: String):
 func define(words: Array[String]) -> String:
 	# check if object has already been defined
 	
+	# check there is a name of the object
+	if words.size() == 0:
+		return "Define what?"
+		
 	# get object name
 	var Objectname = words[0]
 	for i in (words.size() - 1):
 		Objectname += " " + words[i+1]
 	
-	return "Before you is %s" % Objectname
+	return "Before you is the %s" % Objectname
 	
