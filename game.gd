@@ -10,8 +10,12 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 @onready var command_processor = $CommandProcessor
 @onready var room_manager = $RoomManager
 
-var tts_volume: int = 60
-var tts_speed: float = 1
+@onready var pause = $SettingsLayer
+@onready var play_click = $ClickPlayer
+
+@onready var tts_id: int = $SettingsLayer/Settings.id_value
+@onready var tts_volume: int = $SettingsLayer/Settings.volume_value
+@onready var tts_speed: float = $SettingsLayer/Settings.speed_value
 
 func _ready() -> void: 
 	#var starting_message = Response.instantiate() 
@@ -24,22 +28,15 @@ func _ready() -> void:
 	var starting_message = Response.instantiate() 
 	starting_message.text = message
 	add_response_to_game(starting_message)
-	
-@onready var pause = $SettingsLayer
-@onready var play_click = $ClickPlayer
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Escape"):
-		pause.show()
-#>>>>>>> 86f4d3a42f3b98f755167f94c988200248746450
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
 		return
-		
+	
 	var input_response = InputResponse.instantiate()
 	var response = command_processor.process_command(new_text)
-	input_response.set_text(new_text, response, tts_volume, tts_speed)
+	input_response.set_text(new_text, response, 1, tts_volume, tts_speed)
 	add_response_to_game(input_response)
 	#history_rows.add_child(input_response)
 	

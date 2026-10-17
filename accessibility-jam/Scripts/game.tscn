@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dx3a8apcy52xw" path="res://accessibility-jam/Scripts/room.tscn" id="3_c25bl"]
 [ext_resource type="Script" uid="uid://b8dx2varlavxq" path="res://accessibility-jam/Scripts/room_manager.gd" id="3_y28a1"]
 [ext_resource type="PackedScene" uid="uid://cosoci44l2iec" path="res://accessibility-jam/scenesRoman/settings_layer.tscn" id="2_y28a1"]
+[ext_resource type="PackedScene" uid="uid://byylggmtc01p5" path="res://accessibility-jam/scenesRoman/settings.tscn" id="3_mw2w1"]
 [ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
 [ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="4_c25bl"]
 
@@ -36,6 +37,10 @@ room_description = "south area description"
 room_name = "Centre"
 room_description = "centre area description"
 [node name="SettingsLayer" parent="." unique_id=849453455 instance=ExtResource("2_y28a1")]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]
+
+[node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
 
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0

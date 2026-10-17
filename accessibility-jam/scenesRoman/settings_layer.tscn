@@ -4,4 +4,4 @@
 
 [node name="SettingsLayer" type="CanvasLayer" unique_id=849453455]
 
-[node name="Control" parent="." unique_id=1768086741 instance=ExtResource("1_p8eiu")]
+[node name="Settings" parent="." unique_id=1768086741 instance=ExtResource("1_p8eiu")]
