@@ -29,7 +29,6 @@ func _ready() -> void:
 	starting_message.text = message
 	add_response_to_game(starting_message)
 
-
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
 		return

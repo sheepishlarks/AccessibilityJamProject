@@ -23,7 +23,7 @@ offset_bottom = 224.0
 [node name="SizeContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=65640589]
 layout_mode = 2
 
-[node name="SizeLabel" type="Label" parent="SettingsContainer/SizeContainer" unique_id=217944601]
+[node name="SizeLabel" type="Label" parent="SettingsContainer/SizeContainer" unique_id=217944601 groups=["Text"]]
 layout_mode = 2
 text = "FONT SIZE"
 
@@ -34,7 +34,7 @@ value = 30.0
 [node name="MasterContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1627106368]
 layout_mode = 2
 
-[node name="MasterLabel" type="Label" parent="SettingsContainer/MasterContainer" unique_id=1140285971]
+[node name="MasterLabel" type="Label" parent="SettingsContainer/MasterContainer" unique_id=1140285971 groups=["Text"]]
 layout_mode = 2
 text = "AUDIO VOLUME"
 
@@ -67,7 +67,7 @@ value = 70.0
 [node name="VoiceContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1251238985]
 layout_mode = 2
 
-[node name="IDLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=1768392854]
+[node name="IDLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=1768392854 groups=["Text"]]
 layout_mode = 2
 text = "VOICE TYPE"
 
@@ -75,7 +75,7 @@ text = "VOICE TYPE"
 layout_mode = 2
 max_value = 2.0
 
-[node name="VoiceLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=400063945]
+[node name="VoiceLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=400063945 groups=["Text"]]
 layout_mode = 2
 text = "VOICE VOLUME"
 
@@ -83,7 +83,7 @@ text = "VOICE VOLUME"
 layout_mode = 2
 value = 70.0
 
-[node name="VoiceLabel2" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=328464330]
+[node name="VoiceLabel2" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=328464330 groups=["Text"]]
 layout_mode = 2
 text = "VOICE SPEED"
 
