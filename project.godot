@@ -25,6 +25,7 @@ driver/enable_input=true
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+"<<<<<<<HEAD[editor_plugins]enabled"=PackedStringArray("res://addons/godot_whisper/plugin.cfg")
 
 [editor_plugins]
 

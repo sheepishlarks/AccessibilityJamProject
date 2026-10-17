@@ -30,7 +30,7 @@ func process_command( input: String) -> String:
 		
 		#senses
 		"smell", "touch", "feel", "taste", "listen", "hear":
-			last_played_string = sense(first_word, second_word)
+			last_played_string = feel(first_word, second_word)
 			return last_played_string
 		
 		#look
@@ -131,7 +131,7 @@ func help() -> String:
 func status() -> String:
 	return "TEMP you have defined x objects, there are still x to define. you are in a location with things in it"
 
-func sense(sense: String, second_word: String):
+func feel(sense: String, second_word: String):
 	#is the second word a valid object?
 	
 	#what sense are you using?
