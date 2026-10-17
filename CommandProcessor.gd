@@ -5,8 +5,12 @@ signal response_generated(response_text)
 var last_played_string: String
 var current_room = null
 
+var voices = DisplayServer.tts_get_voices_for_language("en")
+var voice_id = voices[0]
+
 func initialise(starting_room) -> String: 
 	return change_room(starting_room)
+	DisplayServer.tts_speak(starting_room, voice_id, 50, 1.0, 1)
 	
 # Called when the node enters the scene tree for the first time.
 func process_command( input: String) -> String:

@@ -8,14 +8,9 @@ extends Control
 @export var volume_value: int
 @export var speed_value: float
 
-# var text = get_tree().get_nodes_in_group("text")
-
-# var text = get_tree().get_nodes_in_group("Text")
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# text.add_theme_font_size_override("font_size", $SettingsContainer/SizeContainer/SizeSlider.value)
+	get_tree().set_group("Text", "font_size", $SettingsContainer/SizeContainer/SizeSlider.value)
 	AudioServer.set_bus_volume_db(MASTER_BUS_ID, linear_to_db($SettingsContainer/MasterContainer/MasterSlider.value) - 70)
 	AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db($SettingsContainer/MusicContainer/MusicSlider.value) - 20)
 	AudioServer.set_bus_volume_db(SFX_BUS_ID, linear_to_db($SettingsContainer/SFXContainer/SFXSlider.value) - 70)
@@ -24,7 +19,8 @@ func _ready() -> void:
 	speed_value = $SettingsContainer/VoiceContainer/VoiceSlider2.value
 
 func _on_size_slider_value_changed(value: int) -> void:
-	$SettingsContainer/SizeContainer/SizeLabel.add_theme_font_size_override("font_size", value)
+	for nodes in get_tree().get_nodes_in_group("Text"):
+		nodes.add_theme_font_size_override("font_size", value)
 
 func _on_master_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(MASTER_BUS_ID, linear_to_db(value) - 100)
