@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dc6f5sf4oou1o" path="res://game.gd" id="1_anlq1"]
 [ext_resource type="Script" uid="uid://d2mxtsg43he3p" path="res://CommandProcessor.gd" id="2_c25bl"]
 [ext_resource type="Script" uid="uid://ctf5vupa7buq3" path="res://input.gd" id="2_s1me1"]
-[ext_resource type="PackedScene" uid="uid://cosoci44l2iec" path="res://accessibility-jam/scenesRoman/settings_layer.tscn" id="2_y28a1"]
 [ext_resource type="PackedScene" uid="uid://dx3a8apcy52xw" path="res://accessibility-jam/Scripts/room.tscn" id="3_c25bl"]
 [ext_resource type="PackedScene" uid="uid://byylggmtc01p5" path="res://accessibility-jam/scenesRoman/settings.tscn" id="3_mw2w1"]
 [ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
@@ -61,11 +60,9 @@ room_description = "east area description"
 room_name = "West"
 room_description = "west area description"
 
-[node name="SettingsLayer" parent="." unique_id=849453455 instance=ExtResource("2_y28a1")]
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]
 
-[node name="Settings2" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
-
-[node name="SettingsLayer2" type="CanvasLayer" parent="." unique_id=668203737]
+[node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
 
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0

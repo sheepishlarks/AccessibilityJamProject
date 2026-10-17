@@ -10,6 +10,9 @@ extends Control
 
 # var text = get_tree().get_nodes_in_group("text")
 
+# var text = get_tree().get_nodes_in_group("Text")
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# text.add_theme_font_size_override("font_size", $SettingsContainer/SizeContainer/SizeSlider.value)
