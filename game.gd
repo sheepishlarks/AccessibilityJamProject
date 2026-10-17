@@ -17,7 +17,11 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 @onready var tts_volume: int = $SettingsLayer/Settings.volume_value
 @onready var tts_speed: float = $SettingsLayer/Settings.speed_value
 
-func _ready() -> void: 
+var voices = DisplayServer.tts_get_voices_for_language("en")
+var voice_id = voices[tts_id]
+
+func _ready() -> void:
+	
 	#var starting_message = Response.instantiate() 
 	#starting_message.text = message
 	#add_response_to_game(starting_message)
@@ -25,9 +29,15 @@ func _ready() -> void:
 	command_processor.response_generated.connect(handle_response_generated)
 	var starting_room_response = command_processor.initialise(room_manager.get_child(1))
 	handle_response_generated(starting_room_response)
-	var starting_message = Response.instantiate() 
+	var starting_message = Response.instantiate()
+	# var start_message: String = message
 	starting_message.text = message
 	#add_response_to_game(starting_message)
+
+	#add_response_to_game(starting_message)
+	
+	DisplayServer.tts_speak(message, voice_id, tts_volume, 1.0, tts_speed)
+
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 

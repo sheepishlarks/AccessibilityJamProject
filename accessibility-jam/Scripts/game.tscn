@@ -99,11 +99,11 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea" unique_id=1695007812]
 layout_mode = 2
 
-[node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1029121566]
+[node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1029121566 groups=["Text"]]
 layout_mode = 2
 text = ">"
 
-[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1650877976]
+[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1650877976 groups=["Text"]]
 layout_mode = 2
 size_flags_horizontal = 3
 keep_editing_on_text_submit = true
