@@ -75,12 +75,15 @@ text = "VOICE VOLUME"
 layout_mode = 2
 value = 70.0
 
-[node name="BackButton" type="Button" parent="SettingsContainer" unique_id=35432611]
+[node name="VoiceLabel2" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=328464330]
 layout_mode = 2
-text = "CONTINUE"
+text = "VOICE SPEED"
+
+[node name="VoiceSlider2" type="HSlider" parent="SettingsContainer/VoiceContainer" unique_id=1220308799]
+layout_mode = 2
+value = 70.0
 
 [connection signal="value_changed" from="SettingsContainer/SizeContainer/SizeSlider" to="." method="_on_size_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/MasterContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/MusicContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/SFXContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="pressed" from="SettingsContainer/BackButton" to="." method="_on_back_button_pressed"]

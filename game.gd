@@ -9,6 +9,9 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 @onready var history_rows = $Background/MarginContainer/Rows/GameInfo/ScrollContainer/HistoryRows
 @onready var command_processor = $CommandProcessor
 
+var tts_volume: int = 60
+var tts_speed: float = 1
+
 func _ready() -> void: 
 	var starting_message = Response.instantiate() 
 	starting_message.text = message
@@ -27,7 +30,7 @@ func _on_input_text_submitted(new_text: String) -> void:
 		
 	var input_response = InputResponse.instantiate()
 	var response = command_processor.process_command(new_text)
-	input_response.set_text(new_text, response)
+	input_response.set_text(new_text, response, tts_volume, tts_speed)
 	add_response_to_game(input_response)
 	#history_rows.add_child(input_response)
 	

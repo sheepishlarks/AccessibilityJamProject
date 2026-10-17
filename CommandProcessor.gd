@@ -51,6 +51,10 @@ func process_command( input: String) -> String:
 		"xyzzy":
 			last_played_string = "'xyzzy' buzzes a bee as it flys by your ear."
 			return last_played_string	
+			
+		"man":
+			last_played_string = "a miserable little pile of secrets."
+			return last_played_string	
 		
 		
 		
