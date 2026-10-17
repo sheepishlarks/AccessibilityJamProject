@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dc6f5sf4oou1o" path="res://game.gd" id="1_anlq1"]
 [ext_resource type="Script" uid="uid://d2mxtsg43he3p" path="res://CommandProcessor.gd" id="2_c25bl"]
 [ext_resource type="Script" uid="uid://ctf5vupa7buq3" path="res://input.gd" id="2_s1me1"]
+[ext_resource type="PackedScene" uid="uid://cosoci44l2iec" path="res://accessibility-jam/scenesRoman/settings_layer.tscn" id="2_y28a1"]
+[ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
+[ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="4_c25bl"]
 
 [node name="Game" type="Control" unique_id=490836244]
 layout_mode = 3
@@ -15,6 +18,8 @@ script = ExtResource("1_anlq1")
 
 [node name="CommandProcessor" type="Node" parent="." unique_id=514267733]
 script = ExtResource("2_c25bl")
+
+[node name="SettingsLayer" parent="." unique_id=849453455 instance=ExtResource("2_y28a1")]
 
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0
@@ -58,6 +63,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 keep_editing_on_text_submit = true
 script = ExtResource("2_s1me1")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
+stream = ExtResource("3_s1me1")
+bus = &"SFX"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1119874993]
+stream = ExtResource("4_c25bl")
+autoplay = true
+bus = &"Music"
 
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
