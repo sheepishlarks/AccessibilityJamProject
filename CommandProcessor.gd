@@ -56,6 +56,9 @@ func process_command( input: String) -> String:
 			last_played_string = "a miserable little pile of secrets."
 			return last_played_string	
 		
+		"slander":
+			last_played_string = "slander is spoken. in print, it's libel."
+			return last_played_string	
 		
 		
 		#else
