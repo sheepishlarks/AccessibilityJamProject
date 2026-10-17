@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://d1pd4oyje7vd0"]
+
+[ext_resource type="Script" uid="uid://bkt8w5ayaa7xe" path="res://samples/godot_whisper/stt_setup.gd" id="1_ss2mx"]
+[ext_resource type="Script" uid="uid://5ymum033edml" path="res://samples/godot_whisper/test_display_stt.gd" id="2_radrb"]
+[ext_resource type="Script" uid="uid://ci2nfxoc7o04a" path="res://samples/godot_whisper/enable_mic_stt.gd" id="2_ss2mx"]
+[ext_resource type="WhisperResource" uid="uid://b06ivje7gpigr" path="res://addons/godot_whisper/models/ggml-base.en-q8_0.bin" id="6_pmyki"]
+[ext_resource type="WhisperResource" uid="uid://cv20l6faxdgdt" path="res://addons/godot_whisper/models/ggml-silero-v6.2.0.bin" id="7_s1ykx"]
+[ext_resource type="Script" uid="uid://bxx1ya08oo7gx" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="8_4ny4c"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_rhq81"]
+
+[node name="CaptureStreamToText" type="VBoxContainer" unique_id=1629831623]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -260.0
+offset_right = 200.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ss2mx")
+
+[node name="MicPlayer" type="AudioStreamPlayer" parent="." unique_id=1605972973]
+stream = SubResource("AudioStreamMicrophone_rhq81")
+bus = &"Record"
+
+[node name="Panel" type="Panel" parent="." unique_id=1668157369]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel" unique_id=1739765659]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "Time: 0s
+Time to process: 0s
+..."
+script = ExtResource("2_radrb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1565605402]
+layout_mode = 2
+
+[node name="MicToggle" type="CheckBox" parent="HBoxContainer" unique_id=1702498096]
+layout_mode = 2
+button_pressed = true
+text = "Mic"
+script = ExtResource("2_ss2mx")
+
+[node name="CaptureStreamToText" type="SpeechToText" parent="." unique_id=598525342]
+language_model = ExtResource("6_pmyki")
+vad_model = ExtResource("7_s1ykx")
+script = ExtResource("8_4ny4c")
+
+[connection signal="toggled" from="HBoxContainer/MicToggle" to="HBoxContainer/MicToggle" method="_on_toggled"]

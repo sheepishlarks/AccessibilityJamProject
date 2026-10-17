@@ -204,6 +204,7 @@ func _report_status(message: String, is_error: bool) -> void:
 		return
 	_status_message = message
 	_status_is_error = is_error
+	print(message)
 	call_deferred("emit_signal", "status_changed", message, is_error)
 
 
