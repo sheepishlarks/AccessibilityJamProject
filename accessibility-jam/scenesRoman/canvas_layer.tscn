@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cosoci44l2iec"]
+
+[ext_resource type="PackedScene" uid="uid://byylggmtc01p5" path="res://accessibility-jam/scenesRoman/settings.tscn" id="1_p8eiu"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=849453455]
+
+[node name="Control" parent="." unique_id=1768086741 instance=ExtResource("1_p8eiu")]

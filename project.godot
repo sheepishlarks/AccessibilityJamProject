@@ -16,6 +16,7 @@ config/icon="res://icon.svg"
 
 [audio]
 
+buses/default_bus_layout="uid://nu12hoceenff"
 general/text_to_speech=true
 
 [display]
