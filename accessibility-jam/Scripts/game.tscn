@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
 [ext_resource type="Script" uid="uid://b8dx2varlavxq" path="res://accessibility-jam/Scripts/room_manager.gd" id="3_y28a1"]
 [ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="4_c25bl"]
-[ext_resource type="Script" uid="uid://b17qljme3yhdv" path="res://accessibility-jam/Scripts/audio_manager.gd" id="5_0lpm8"]
 [ext_resource type="PackedScene" uid="uid://cmjwoe75dqnjm" path="res://accessibility-jam/Scripts/audio_manager.tscn" id="5_khu1k"]
 [ext_resource type="Script" uid="uid://c2iynb23sgbdd" path="res://accessibility-jam/Scripts/sound_effects.gd" id="6_k4rqo"]
 [ext_resource type="Script" uid="uid://5ymum033edml" path="res://STT/text_display_stt.gd" id="7_khu1k"]
@@ -58,6 +57,7 @@ metadata/_custom_type_script = "uid://c2iynb23sgbdd"
 
 [sub_resource type="Resource" id="Resource_k4rqo"]
 script = ExtResource("6_k4rqo")
+type = 1
 sound_effect = ExtResource("7_uxuw0")
 metadata/_custom_type_script = "uid://c2iynb23sgbdd"
 
@@ -132,7 +132,6 @@ room_description = "There is space on every side of you, except for the West, wh
 room_description_defined = "There is space on every side of you, except for the West, where you can feel a wall, and the "
 roomItems = ["Unobject", "crystal ball"]
 
-script = ExtResource("5_0lpm8")
 [node name="AudioManager" parent="." unique_id=884657398 instance=ExtResource("5_khu1k")]
 sound_effects_settings = Array[ExtResource("6_k4rqo")]([SubResource("Resource_0lpm8"), SubResource("Resource_k4rqo")])
 
