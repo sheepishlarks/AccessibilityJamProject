@@ -4,10 +4,12 @@ class_name Room
 
 @export var room_name = "roomName"
 @export var room_description = "this is the description of the room"
+@export var room_description_defined = "this is the new description of the room"
 @export var roomItems = ["Unobject"]
 
-var exits: Dictionary = {}
 
+var exits: Dictionary = {}
+var room_defined = false 
 
 func connect_exit(direction: String, room: Room): 
 	match direction: 
@@ -25,3 +27,6 @@ func connect_exit(direction: String, room: Room):
 			room.exits["north"] = self	
 		_: 
 			printerr("Tried to connect to invalid direction: %s", direction)
+			
+func define_room(definition: String, room: Room): 
+	pass

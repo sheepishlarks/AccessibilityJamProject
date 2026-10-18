@@ -28,6 +28,7 @@ script = ExtResource("3_y28a1")
 [node name="North" parent="RoomManager" unique_id=1907899534 instance=ExtResource("3_c25bl")]
 room_name = "North"
 room_description = "north area description"
+roomItems = ["Unobject", "curtains", "plant", "plant pot"]
 
 [node name="South" parent="RoomManager" unique_id=1726959315 instance=ExtResource("3_c25bl")]
 room_name = "South"
@@ -37,18 +38,22 @@ roomItems = ["Door", "piss"]
 [node name="SouthEast" parent="RoomManager" unique_id=43429430 instance=ExtResource("3_c25bl")]
 room_name = "South East"
 room_description = "south east area description"
+roomItems = ["Unobject", "clothes"]
 
 [node name="SouthWest" parent="RoomManager" unique_id=545583940 instance=ExtResource("3_c25bl")]
 room_name = "South West"
 room_description = "south west area description"
+roomItems = ["Unobject", "spices", "pan"]
 
 [node name="NorthEast" parent="RoomManager" unique_id=1105538475 instance=ExtResource("3_c25bl")]
 room_name = "North East"
 room_description = "north east area description"
+roomItems = ["Unobject", "computer", "chair"]
 
 [node name="NorthWest" parent="RoomManager" unique_id=591973925 instance=ExtResource("3_c25bl")]
 room_name = "North East"
 room_description = "north west area description"
+roomItems = ["Unobject", "plushie", "blankets"]
 
 [node name="Centre" parent="RoomManager" unique_id=456425252 instance=ExtResource("3_c25bl")]
 room_name = "Centre"
@@ -57,10 +62,12 @@ room_description = "centre area description"
 [node name="East" parent="RoomManager" unique_id=868202480 instance=ExtResource("3_c25bl")]
 room_name = "East"
 room_description = "east area description"
+roomItems = ["Unobject", "books"]
 
 [node name="West" parent="RoomManager" unique_id=671322397 instance=ExtResource("3_c25bl")]
 room_name = "West"
 room_description = "west area description"
+roomItems = ["Unobject", "crystal ball"]
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]
 
