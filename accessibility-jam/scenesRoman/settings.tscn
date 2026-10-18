@@ -73,7 +73,7 @@ text = "VOICE TYPE"
 
 [node name="IDSlider" type="HSlider" parent="SettingsContainer/VoiceContainer" unique_id=73397919]
 layout_mode = 2
-max_value = 2.0
+max_value = 1.0
 
 [node name="VoiceLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=400063945 groups=["Text"]]
 layout_mode = 2

@@ -5,8 +5,18 @@ signal response_generated(response_text)
 var last_played_string: String
 var current_room = null
 
+
+#definitions 
+var windowDef = "something else..."
+var deskDef = "something"
+
+var voices = DisplayServer.tts_get_voices_for_language("en")
+var voice_id = voices[0]
+
+
 func initialise(starting_room) -> String: 
 	return change_room(starting_room)
+	DisplayServer.tts_speak(starting_room, voice_id, 50, 1.0, 1)
 	
 # Called when the node enters the scene tree for the first time.
 func process_command( input: String) -> String:
@@ -134,20 +144,61 @@ func status() -> String:
 
 func feel(sense: String, second_word: String):
 	#is the second word a valid object?
-	
+	if current_room.roomItems.has(second_word): 
+		match second_word:
+			"piss": 
+				return "you smell piss. guess this flat is in dundee"
+	elif second_word == "": 
+		pass
+	else:
+		return "You can't smell that."
+		
 	#what sense are you using?
 	match sense:
 		"smell":
-			return "TEMP you smell %s" % second_word
-		
+			#return "TEMP you smell %s" % second_word
+			match current_room.room_name: 
+				"South": 
+					return "The paint is so incredibly old it barely smells of anything at all, but you can make out hints of oak hiding beneath it. "
+				"Centre": 
+					return "It’s faint, but there’s a slight waft of some food-smell coming from the southwest corner."
+				"North": 
+					return "The air has that post-bonfire smell that seems to come around at night. It’s lightly smoky, accented nicely by the cool, October temperatures."
+				"North East": 
+					return "You smell something cheap and fresh, like an aerosol to cover up the scent that years of dust leaves behind. There’s also a distinct leathery scent that you believe might be a 'chair'"
+				"East": 
+					return "You smell a mix of old paper and waxy plastic. The two comingle unhappily but are clearly inseparable."
+				"South East":
+					return "You smell well-loved cedar. It’s comforting."
+				"South West": 
+					return "Something unidentifiable wafts in the air. It smells like something that’s been cooking low and slow for quite some time. You catch a hint of some 'spices' that seem to have been laid out close by."
+				"West": 
+					return "The air here is stale, far more stale than the rest of the room. It’s a little unsettling."
+				"North West": 
+					return "This place smells like sweat, and not really much else."
+				_: 
+					return "TEMP you smell %s" % second_word
+				
 		"touch", "feel":
-			return "TEMP you touch %s" % second_word
+			match current_room.room_name: 
+				"South": 
+					return "It’s solid and sturdy. It’s certainly never been broken into. Your hand finds a latch-chain that (luckily for you) was left unconnected."
+				_: 
+					return "TEMP you touch %s" % second_word
 		
 		"taste":
-			return "TEMP you taste %s" % second_word
+			match current_room.room_name: 
+				"South": 
+					return "You taste the thousands of hands that have touched this before. Gives a whole new meaning to ‘a new lick of paint’."
+				_: 
+					return "TEMP you taste %s" % second_word
 		
 		"hear", "listen":
-			return "TEMP you hear %s" % second_word
+			match current_room.room_name: 
+				"South": 
+					return "You hear faint chatter and yelling from further down the stairwell, but the wood is too thick for you to hear what anyone is talking about."
+				_: 
+					return "TEMP you hear %s" % second_word
 
 func define(words: Array[String]) -> String:
 	# check if object has already been defined
@@ -179,3 +230,6 @@ func remove_punctuation(input: String) -> String:
 	for p in punctuation:
 		fixed_string = fixed_string.replace(p, "")
 	return fixed_string
+
+func use_senses(smelled: String) -> String: 
+	return smelled

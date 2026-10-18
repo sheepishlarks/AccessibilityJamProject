@@ -8,7 +8,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_pj1c1")
 
-[node name="InputHistory" type="Label" parent="." unique_id=1590092575]
+[node name="InputHistory" type="Label" parent="." unique_id=1590092575 groups=["Text"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72156864, 0.7372549, 0.8235294, 1)
 theme_override_font_sizes/font_size = 13
