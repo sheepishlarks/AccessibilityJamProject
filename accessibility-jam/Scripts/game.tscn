@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
 [ext_resource type="Script" uid="uid://b8dx2varlavxq" path="res://accessibility-jam/Scripts/room_manager.gd" id="3_y28a1"]
 [ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="4_c25bl"]
+[ext_resource type="Script" uid="uid://b17qljme3yhdv" path="res://accessibility-jam/Scripts/audio_manager.gd" id="5_0lpm8"]
 [ext_resource type="Script" uid="uid://5ymum033edml" path="res://STT/text_display_stt.gd" id="7_khu1k"]
 [ext_resource type="Script" uid="uid://bkt8w5ayaa7xe" path="res://STT/stt_setup.gd" id="10_0lpm8"]
 [ext_resource type="Script" uid="uid://ci2nfxoc7o04a" path="res://STT/enable_mic_stt.gd" id="11_k4rqo"]
@@ -86,6 +87,9 @@ room_description = "There is space on every side of you, except for the West, wh
 room_description_defined = "There is space on every side of you, except for the West, where you can feel a wall, and the "
 roomItems = ["Unobject", "crystal ball"]
 
+[node name="AudioManager" type="Node" parent="." unique_id=125179691]
+script = ExtResource("5_0lpm8")
+
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]
 
 [node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
@@ -141,7 +145,7 @@ size_flags_horizontal = 3
 keep_editing_on_text_submit = true
 script = ExtResource("7_khu1k")
 
-[node name="ClickPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
 stream = ExtResource("3_s1me1")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1119874993]
