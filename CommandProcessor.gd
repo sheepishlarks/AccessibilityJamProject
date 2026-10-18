@@ -8,7 +8,13 @@ var current_room = null
 
 #definitions 
 var windowDef = "something else..."
-var deskDef = "something"
+var deskDef = "something else..."
+var bookshelfDef = "something else..."
+var wardrobeDef = "something else..."
+var doorDef = "What are those things called again? The swingy-open things, the ones you put the keys in. Maybe that should be the first thing in the room that you [define]."
+var stoveDef = "something else..."
+var shelfDef = "something else..."
+var bedDef = "something else..."
 
 # special variables 
 var curtainsOpen = false 
@@ -124,6 +130,7 @@ func process_command( input: String) -> String:
 						return last_played_string
 					else: 
 						last_played_string = "What spices?"
+						return last_played_string
 				_: 
 					last_played_string = "Use what?"
 					return last_played_string
@@ -436,7 +443,7 @@ func feel(sense: String, second_word: String):
 
 func define(words: Array[String]) -> String:
 	# check if object has already been defined
-	
+
 	# check there is a name of the object
 	if words.size() == 0:
 		return "Define what?"
@@ -445,6 +452,50 @@ func define(words: Array[String]) -> String:
 	var Objectname = words[0]
 	for i in (words.size() - 1):
 		Objectname += " " + words[i+1]
+		
+	match current_room.room_name: 
+		"North": 
+			if windowDef == "something else...": 
+				windowDef = Objectname
+			else: 
+				return "You already defined it! That's a " + windowDef
+		"South": 
+			if doorDef == "What are those things called again? The swingy-open things, the ones you put the keys in. Maybe that should be the first thing in the room that you [define]": 
+				doorDef = Objectname
+			else: 
+				return "You already defined it! That's a " + doorDef
+		"South East": 
+			if wardrobeDef == "something else...": 
+				wardrobeDef = Objectname
+			else: 
+				return "You already defined it! That's a " + wardrobeDef
+		"South West": 
+			if stoveDef == "something else...": 
+				stoveDef = Objectname
+			else: 
+				return "You already defined it! That's a " + stoveDef
+		"North East": 
+			if deskDef == "something else...": 
+				deskDef = Objectname
+			else: 
+				return "You already defined it! That's a " + deskDef
+		"North West": 
+			if bedDef == "something else...": 
+				bedDef = Objectname
+			else: 
+				return "You already defined it! That's a " + bedDef
+		"Centre": 
+			return "There is nothing here to define."
+		"East": 
+			if bookshelfDef == "something else...": 
+				bookshelfDef = Objectname
+			else: 
+				return "You already defined it! That's a " + bookshelfDef
+		"West": 
+			if shelfDef == "something else...": 
+				shelfDef = Objectname
+			else: 
+				return "You already defined it! That's a " + shelfDef
 	
 	return "Before you is the %s" % Objectname
 	
