@@ -116,6 +116,7 @@ text = ">"
 layout_mode = 2
 size_flags_horizontal = 3
 keep_editing_on_text_submit = true
+emoji_menu_enabled = false
 script = ExtResource("2_s1me1")
 
 [node name="STTInput" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=460329719 node_paths=PackedStringArray("input")]
@@ -171,6 +172,7 @@ language_model = ExtResource("12_uxuw0")
 vad_model = ExtResource("13_t1w3l")
 script = ExtResource("14_o7lko")
 
+[connection signal="editing_toggled" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_editing_toggled"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="." method="_on_input_text_submitted"]

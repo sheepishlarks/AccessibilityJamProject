@@ -39,6 +39,8 @@ func set_stt_on_off(on_off: bool):
 		input.visible = true
 		input.text = completed_text
 		input.emit_signal("text_changed", completed_text)
+		input.get_focus()
+		input.edit()
 	else:
 		completed_text = input.text
 		text = input.text
