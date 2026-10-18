@@ -42,7 +42,6 @@ text = "Start"
 alignment = 0
 
 [node name="Settings" type="Button" parent="." unique_id=1368209699]
-visible = false
 layout_mode = 1
 offset_left = 50.0
 offset_top = 350.0
@@ -56,16 +55,15 @@ alignment = 0
 [node name="Quit" type="Button" parent="." unique_id=986450594]
 layout_mode = 1
 offset_left = 50.0
-offset_top = 350.0
+offset_top = 450.0
 offset_right = 300.0
-offset_bottom = 405.0
+offset_bottom = 505.0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kjwba")
 text = "Quit"
 alignment = 0
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=2099804980]
-visible = false
 
 [node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("2_eiy7p")]
 main_menu_scene_name = "res://MainMenu.tscn"

@@ -2,9 +2,10 @@ extends Node
 
 signal response_generated(response_text)
 
+# @onready var sfx =  get_tree().root.find_node("SFX")
+
 var last_played_string: String
 var current_room = null
-
 
 #definitions 
 var windowDef = "something else..."
@@ -25,12 +26,11 @@ var objectsDefined = 0
 var gameFinished = false; 
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
-var voice_id = voices[0]
+var voice_id = voices[Globals.tts_voice_id]
 
 
 func initialise(starting_room) -> String: 
 	return change_room(starting_room)
-	DisplayServer.tts_speak(starting_room, voice_id, 50, 1.0, 1)
 	
 # Called when the node enters the scene tree for the first time.
 func process_command( input: String) -> String:
@@ -251,7 +251,8 @@ func feel(sense: String, second_word: String):
 				match sense: 
 					"smell": 
 						return "You breathe in a bit too deeply and get a nose full of old smoke. These will need a wash before the apartment can sell."
-					"touch", "feel": 
+					"touch", "feel":
+						# sfx.play()
 						return "The material feels light and slightly coarse, with two or three layers of fabric to it. You guess that they might be linen or cotton."
 					"taste", "eat": 
 						return "A little dry for your taste. Too difficult to rip a bite from, and bits of fabric get stuck in your teeth. You make a mental note not to eat here again."
@@ -561,6 +562,8 @@ func change_room(new_room: Room) -> String:
 		return strings
 	#emit_signal("response_generated", strings)
 	#return strings
+	# if !DisplayServer.tts_is_speaking():
+	#	DisplayServer.tts_speak(strings, voice_id, Globals.tts_volume_value, 1.0, Globals.tts_speed_value)
 	
 	
 func remove_punctuation(input: String) -> String:
