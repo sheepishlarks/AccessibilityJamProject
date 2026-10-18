@@ -12,7 +12,8 @@ const DEFAULT_INPUT_DEVICE := "Default"
 signal stt_on_off(on_off:bool)
 
 func _ready():
-	pass
+	mic_player.stop()
+	emit_signal("stt_on_off", false)
 #	_populate_input_devices()
 	#if input_device != null:
 	#	input_device.item_selected.connect(_on_input_device_item_selected)
@@ -29,7 +30,7 @@ func _on_toggled(toggled_on: bool):
 		emit_signal("stt_on_off", true)
 	else:
 		mic_player.stop()
-		emit_signal("stt_on_off", true)
+		emit_signal("stt_on_off", false)
 
 func _restart_microphone_stream() -> void:
 	mic_player.stream = AudioStreamMicrophone.new()

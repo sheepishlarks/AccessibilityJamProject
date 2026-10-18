@@ -119,13 +119,12 @@ keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 script = ExtResource("2_s1me1")
 
-[node name="STTInput" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=460329719 node_paths=PackedStringArray("input")]
+[node name="STTInput" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=460329719]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 keep_editing_on_text_submit = true
 script = ExtResource("7_khu1k")
-input = NodePath("../Input")
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
 stream = ExtResource("3_s1me1")
@@ -144,7 +143,7 @@ anchor_bottom = 0.5
 offset_left = -44.0
 offset_top = 236.0
 offset_right = 356.0
-offset_bottom = 756.0
+offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_0lpm8")
