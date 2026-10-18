@@ -65,6 +65,7 @@ step = 0.01
 value = 0.1
 
 [node name="SFXContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1286500049]
+visible = false
 layout_mode = 2
 
 [node name="SFXLabel" type="Label" parent="SettingsContainer/SFXContainer" unique_id=653097940 groups=["Text"]]
@@ -111,6 +112,7 @@ step = 0.01
 value = 1.0
 
 [node name="SwitchContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=2067668868]
+visible = false
 layout_mode = 2
 
 [node name="ContrastLabel" type="Label" parent="SettingsContainer/SwitchContainer" unique_id=14668581 groups=["Text"]]
