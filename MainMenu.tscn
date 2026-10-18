@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dd1r5uru5ib5k" path="res://main_menu.gd" id="1_i26rj"]
 [ext_resource type="PackedScene" uid="uid://byylggmtc01p5" path="res://accessibility-jam/scenesRoman/settings.tscn" id="2_eiy7p"]
+[ext_resource type="Texture2D" uid="uid://cs38fexxm6ss4" path="res://Eigengrau_Menu.png" id="2_h7a2f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_llvy7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kjwba"]
 
@@ -18,11 +21,17 @@ settings = NodePath("SettingsLayer/Settings")
 scene_name = "res://accessibility-jam/Scripts/game.tscn"
 
 [node name="Background" type="PanelContainer" parent="." unique_id=1198946292]
+material = SubResource("ShaderMaterial_llvy7")
 layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 648.0
 
+[node name="EigengrauMenu" type="Sprite2D" parent="Background" unique_id=1276016003]
+position = Vector2(576, 324)
+texture = ExtResource("2_h7a2f")
+
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=910573919]
+visible = false
 layout_mode = 1
 offset_left = 50.0
 offset_top = 75.0
@@ -33,37 +42,54 @@ text = "Eigengrau"
 
 [node name="Play" type="Button" parent="." unique_id=1991103762]
 layout_mode = 1
-offset_left = 50.0
-offset_top = 250.0
-offset_right = 300.0
-offset_bottom = 305.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -223.0
+offset_right = 125.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kjwba")
 text = "Start"
-alignment = 0
 
 [node name="Settings" type="Button" parent="." unique_id=1368209699]
 visible = false
 layout_mode = 1
-offset_left = 50.0
-offset_top = 350.0
-offset_right = 300.0
-offset_bottom = 405.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -55.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kjwba")
 text = "Settings"
-alignment = 0
 
 [node name="Quit" type="Button" parent="." unique_id=986450594]
 layout_mode = 1
-offset_left = 50.0
-offset_top = 350.0
-offset_right = 300.0
-offset_bottom = 405.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -142.0
+offset_right = 125.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kjwba")
 text = "Quit"
-alignment = 0
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=2099804980]
 visible = false

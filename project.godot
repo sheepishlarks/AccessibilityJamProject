@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="AccessibilityJam"
-run/main_scene="uid://bqdrk4wbvofb5"
+config/name="Eigengrau"
+config/version="1.0"
+run/main_scene="uid://bk010wej47v5b"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cs38fexxm6ss4"
 
 [audio]
 
