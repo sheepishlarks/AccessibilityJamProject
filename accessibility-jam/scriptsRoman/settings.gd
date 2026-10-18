@@ -1,4 +1,5 @@
 extends Control
+class_name Settings
 
 @onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
@@ -65,3 +66,11 @@ func _on_voice_slider_value_changed(value: int) -> void:
 func _on_voice_slider_2_value_changed(value: float) -> void:
 	speed_value = value
 	# DisplayServer.tts_speak("Testing audio.", voice_id, volume_value, 1.0, speed_value)
+
+
+func _on_settings_back_pressed() -> void:
+	pauseMenu()
+
+@export var main_menu_scene_name : String
+func _on_settings_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file(main_menu_scene_name)
