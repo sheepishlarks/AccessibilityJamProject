@@ -14,15 +14,12 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 @onready var command_processor = $CommandProcessor
 @onready var room_manager = $RoomManager
 
-@onready var pause = $SettingsLayer
-@onready var play_click = $ClickPlayer
+@onready var sfx = $SFXPlayer
 
 @onready var tts_id: int = $SettingsLayer/Settings.id_value
-@onready var tts_volume: int = $SettingsLayer/Settings.volume_value
-@onready var tts_speed: float = $SettingsLayer/Settings.speed_value
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
-var voice_id = voices[tts_id]
+var voice_id = voices[Globals.tts_voice_id]
 
 func _ready() -> void:
 	
@@ -43,8 +40,7 @@ func _ready() -> void:
 	#add_response_to_game(starting_message)
 
 	#add_response_to_game(starting_message)
-	
-	DisplayServer.tts_speak(message, voice_id, tts_volume, 1.0, tts_speed)
+	DisplayServer.tts_speak(message, voice_id, Globals.tts_volume_value, 1.0, Globals.tts_speed_value)
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
@@ -52,7 +48,7 @@ func _on_input_text_submitted(new_text: String) -> void:
 	
 	var input_response = InputResponse.instantiate()
 	var response = command_processor.process_command(new_text)
-	input_response.set_text(new_text, response, 1, tts_volume, tts_speed)
+	input_response.set_text(new_text, response)
 	add_response_to_game(input_response)
 	#history_rows.add_child(input_response)
 	
@@ -62,7 +58,7 @@ func handle_response_generated(response_text: String):
 	response.text = response_text
 	add_response_to_game(response)
 #=======
-	play_click.play()
+	sfx.play()
 #>>>>>>> 86f4d3a42f3b98f755167f94c988200248746450
 
 func delete_history_beyond_limit(): 

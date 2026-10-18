@@ -23,9 +23,9 @@ color = Color(0, 0, 0, 0.78431374)
 [node name="SettingsContainer" type="VBoxContainer" parent="." unique_id=231128858]
 layout_mode = 0
 offset_left = -133.0
-offset_top = 182.0
+offset_top = 78.0
 offset_right = 525.0
-offset_bottom = 511.0
+offset_bottom = 450.0
 
 [node name="SizeContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=65640589]
 layout_mode = 2
@@ -49,7 +49,7 @@ text = "AUDIO VOLUME"
 layout_mode = 2
 max_value = 2.0
 step = 0.01
-value = 1.0
+value = 0.1
 
 [node name="MusicContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1119102018]
 layout_mode = 2
@@ -62,7 +62,7 @@ text = "MUSIC VOLUME"
 layout_mode = 2
 max_value = 2.0
 step = 0.01
-value = 1.0
+value = 0.1
 
 [node name="SFXContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1286500049]
 layout_mode = 2
@@ -75,18 +75,21 @@ text = "SFX VOLUME"
 layout_mode = 2
 max_value = 2.0
 step = 0.01
-value = 1.0
+value = 0.1
 
-[node name="VoiceContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1251238985]
+[node name="IDContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=171791760]
 layout_mode = 2
 
-[node name="IDLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=1768392854 groups=["Text"]]
+[node name="IDLabel" type="Label" parent="SettingsContainer/IDContainer" unique_id=1768392854 groups=["Text"]]
 layout_mode = 2
 text = "VOICE TYPE"
 
-[node name="IDSlider" type="HSlider" parent="SettingsContainer/VoiceContainer" unique_id=73397919]
+[node name="IDSlider" type="HSlider" parent="SettingsContainer/IDContainer" unique_id=73397919]
 layout_mode = 2
 max_value = 1.0
+
+[node name="VoiceContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1251238985]
+layout_mode = 2
 
 [node name="VoiceLabel" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=400063945 groups=["Text"]]
 layout_mode = 2
@@ -94,7 +97,7 @@ text = "VOICE VOLUME"
 
 [node name="VoiceSlider" type="HSlider" parent="SettingsContainer/VoiceContainer" unique_id=1920344312]
 layout_mode = 2
-value = 70.0
+value = 50.0
 
 [node name="VoiceLabel2" type="Label" parent="SettingsContainer/VoiceContainer" unique_id=328464330 groups=["Text"]]
 layout_mode = 2
@@ -105,12 +108,24 @@ layout_mode = 2
 min_value = 0.5
 max_value = 2.0
 step = 0.01
-value = 1.5
+value = 1.0
+
+[node name="SwitchContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=2067668868]
+layout_mode = 2
+
+[node name="ContrastLabel" type="Label" parent="SettingsContainer/SwitchContainer" unique_id=14668581 groups=["Text"]]
+layout_mode = 2
+text = "CONTRAST SWITCH"
+
+[node name="ContrastSlider" type="HSlider" parent="SettingsContainer/SwitchContainer" unique_id=451325581]
+layout_mode = 2
+max_value = 1.0
 
 [connection signal="value_changed" from="SettingsContainer/SizeContainer/SizeSlider" to="." method="_on_size_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/MasterContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/MusicContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/SFXContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="value_changed" from="SettingsContainer/VoiceContainer/IDSlider" to="." method="_on_id_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/IDContainer/IDSlider" to="." method="_on_id_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/VoiceContainer/VoiceSlider" to="." method="_on_voice_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/VoiceContainer/VoiceSlider2" to="." method="_on_voice_slider_2_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/SwitchContainer/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]

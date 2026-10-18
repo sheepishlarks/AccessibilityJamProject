@@ -21,6 +21,10 @@ buses/default_bus_layout="uid://nu12hoceenff"
 general/text_to_speech=true
 driver/enable_input=true
 
+[autoload]
+
+Globals="*uid://duwn4tt8gbn5h"
+
 [display]
 
 window/stretch/mode="canvas_items"

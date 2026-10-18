@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://bqdrk4wbvofb5"]
+
+[ext_resource type="Script" uid="uid://dc6f5sf4oou1o" path="res://game.gd" id="1_anlq1"]
+[ext_resource type="Script" uid="uid://d2mxtsg43he3p" path="res://CommandProcessor.gd" id="2_c25bl"]
+[ext_resource type="Script" uid="uid://ctf5vupa7buq3" path="res://input.gd" id="2_s1me1"]
+[ext_resource type="PackedScene" uid="uid://dx3a8apcy52xw" path="res://accessibility-jam/Scripts/room.tscn" id="3_c25bl"]
+[ext_resource type="PackedScene" uid="uid://byylggmtc01p5" path="res://accessibility-jam/scenesRoman/settings.tscn" id="3_mw2w1"]
+[ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
+[ext_resource type="Script" uid="uid://b8dx2varlavxq" path="res://accessibility-jam/Scripts/room_manager.gd" id="3_y28a1"]
+[ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="4_c25bl"]
+[ext_resource type="Script" uid="uid://5ymum033edml" path="res://STT/text_display_stt.gd" id="7_khu1k"]
+[ext_resource type="Script" uid="uid://bkt8w5ayaa7xe" path="res://STT/stt_setup.gd" id="10_0lpm8"]
+[ext_resource type="Script" uid="uid://ci2nfxoc7o04a" path="res://STT/enable_mic_stt.gd" id="11_k4rqo"]
+[ext_resource type="WhisperResource" uid="uid://b06ivje7gpigr" path="res://addons/godot_whisper/models/ggml-base.en-q8_0.bin" id="12_uxuw0"]
+[ext_resource type="WhisperResource" uid="uid://cv20l6faxdgdt" path="res://addons/godot_whisper/models/ggml-silero-v6.2.0.bin" id="13_t1w3l"]
+[ext_resource type="Script" uid="uid://bxx1ya08oo7gx" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="14_o7lko"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_rhq81"]
+
+[node name="Game" type="Control" unique_id=490836244]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_anlq1")
+message = "You are an estate agent on a mission; there’s this studio apartment that your boss is desperate to see sold after yet another tenant has packed up and left in the middle of the night.  One problem though – it’s pitch-dark in there. The lights are busted, and unlike estate agents, electricians can’t be called out to work until the sun comes up. Your boss is breathing down your neck to get this property appraised ASAP, so there’s really nothing else for it. You’ve got the keys, you’ve climbed the stairs, now all you need to do is catalogue the room’s amenities. These are the big things – pieces of furniture/utilities that take up space, not the trinkets and knickknacks on top of them. There are 8 in total; one in each cardinal direction (to the North, East, South etc.). You’ll need to rely on your senses other than sight to figure out what these are. Good luck! "
+
+[node name="CommandProcessor" type="Node" parent="." unique_id=514267733]
+script = ExtResource("2_c25bl")
+
+[node name="RoomManager" type="Node" parent="." unique_id=1885444420]
+script = ExtResource("3_y28a1")
+
+[node name="North" parent="RoomManager" unique_id=1907899534 instance=ExtResource("3_c25bl")]
+room_name = "North"
+room_description = "north area description"
+roomItems = ["Unobject", "curtains", "plant", "plant pot"]
+
+[node name="South" parent="RoomManager" unique_id=1726959315 instance=ExtResource("3_c25bl")]
+room_name = "South"
+room_description = "STAT: There is space on every side of you, except for the South, where you can feel a wall, and the "
+roomItems = ["Door", "piss"]
+
+[node name="SouthEast" parent="RoomManager" unique_id=43429430 instance=ExtResource("3_c25bl")]
+room_name = "South East"
+room_description = "south east area description"
+roomItems = ["Unobject", "clothes"]
+
+[node name="SouthWest" parent="RoomManager" unique_id=545583940 instance=ExtResource("3_c25bl")]
+room_name = "South West"
+room_description = "south west area description"
+roomItems = ["Unobject", "spices", "pan"]
+
+[node name="NorthEast" parent="RoomManager" unique_id=1105538475 instance=ExtResource("3_c25bl")]
+room_name = "North East"
+room_description = "north east area description"
+roomItems = ["Unobject", "computer", "chair"]
+
+[node name="NorthWest" parent="RoomManager" unique_id=591973925 instance=ExtResource("3_c25bl")]
+room_name = "North East"
+room_description = "north west area description"
+roomItems = ["Unobject", "plushie", "blankets"]
+
+[node name="Centre" parent="RoomManager" unique_id=456425252 instance=ExtResource("3_c25bl")]
+room_name = "Centre"
+room_description = "centre area description"
+
+[node name="East" parent="RoomManager" unique_id=868202480 instance=ExtResource("3_c25bl")]
+room_name = "East"
+room_description = "east area description"
+roomItems = ["Unobject", "books"]
+
+[node name="West" parent="RoomManager" unique_id=671322397 instance=ExtResource("3_c25bl")]
+room_name = "West"
+room_description = "west area description"
+roomItems = ["Unobject", "crystal ball"]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]
+
+[node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
+
+[node name="Background" type="PanelContainer" parent="." unique_id=26014560]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=469036646]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer" unique_id=1161560283]
+layout_mode = 2
+
+[node name="GameInfo" type="PanelContainer" parent="Background/MarginContainer/Rows" unique_id=756171120]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo" unique_id=380249187]
+layout_mode = 2
+
+[node name="HistoryRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo/ScrollContainer" unique_id=786847155]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows" unique_id=1199391424]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea" unique_id=1695007812]
+layout_mode = 2
+
+[node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1029121566 groups=["Text"]]
+layout_mode = 2
+text = ">"
+
+[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1650877976 groups=["Text"]]
+layout_mode = 2
+size_flags_horizontal = 3
+keep_editing_on_text_submit = true
+emoji_menu_enabled = false
+script = ExtResource("2_s1me1")
+
+[node name="STTInput" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=460329719]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+keep_editing_on_text_submit = true
+script = ExtResource("7_khu1k")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
+stream = ExtResource("3_s1me1")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1119874993]
+stream = ExtResource("4_c25bl")
+autoplay = true
+bus = &"Music"
+
+[node name="CaptureStreamToText" type="VBoxContainer" parent="." unique_id=1629831623 node_paths=PackedStringArray("mic_player", "audio_to_text", "transcribe_label", "mic_toggle")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 236.0
+offset_right = 356.0
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_0lpm8")
+mic_player = NodePath("MicPlayer")
+audio_to_text = NodePath("CaptureStreamToText")
+transcribe_label = NodePath("../Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput")
+mic_toggle = NodePath("HBoxContainer/MicToggle")
+
+[node name="MicPlayer" type="AudioStreamPlayer" parent="CaptureStreamToText" unique_id=1605972973]
+stream = SubResource("AudioStreamMicrophone_rhq81")
+bus = &"Record"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CaptureStreamToText" unique_id=1565605402]
+layout_mode = 2
+
+[node name="MicToggle" type="CheckBox" parent="CaptureStreamToText/HBoxContainer" unique_id=1702498096 node_paths=PackedStringArray("mic_player", "audio_to_text")]
+layout_mode = 2
+text = "Speech To Text"
+script = ExtResource("11_k4rqo")
+mic_player = NodePath("../../MicPlayer")
+audio_to_text = NodePath("../../CaptureStreamToText")
+
+[node name="CaptureStreamToText" type="SpeechToText" parent="CaptureStreamToText" unique_id=598525342]
+language_model = ExtResource("12_uxuw0")
+vad_model = ExtResource("13_t1w3l")
+script = ExtResource("14_o7lko")
+
+[connection signal="editing_toggled" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_editing_toggled"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" method="_on_text_submitted"]
+[connection signal="stt_on_off" from="CaptureStreamToText/HBoxContainer/MicToggle" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="set_stt_on_off"]
+[connection signal="toggled" from="CaptureStreamToText/HBoxContainer/MicToggle" to="CaptureStreamToText/HBoxContainer/MicToggle" method="_on_toggled"]
