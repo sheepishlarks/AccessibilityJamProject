@@ -19,11 +19,12 @@ var bedDef = "something else..."
 
 # special variables 
 var curtainsOpen = false 
-var panSpiced = false;
+var panSpiced = false
 
 #gameplay variables
 var objectsDefined = 0
-var gameFinished = false; 
+var gameFinished = false
+var quitTime = false 
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
 var voice_id = voices[Globals.tts_voice_id]
@@ -138,6 +139,7 @@ func process_command( input: String) -> String:
 				"spices": 
 					if current_room.room_name == "South West": 
 						last_played_string = "You stir the spices into the pan. Into the pan of mystery stew in someone's abandoned flat. Look, you didn't have time to eat before this!"
+						panSpiced = true
 						return last_played_string
 					else: 
 						last_played_string = "What spices?"
@@ -158,7 +160,7 @@ func process_command( input: String) -> String:
 					var stoveString = "- A state-of-the-art " + stoveDef + "for all your culinary needs. \n"
 					var shelfString = "- A set of " + shelfDef + " to hold all your knicknacks and trinkets. \n"
 					var bedString = "- A " + bedDef + " so comfortable that you’ll have trouble getting out of it in the mornings! \n"
-					var congrats = "Congratulations, and thanks for playing!"
+					var congrats = "Congratulations, and thanks for playing! Type 'quit' to return to menu"
 					
 					last_played_string = intro + doorString + windowString + deskString + bookshelfString + wardrobeString + stoveString + shelfString + bedString + congrats
 					return last_played_string
@@ -168,6 +170,15 @@ func process_command( input: String) -> String:
 			else: 
 				last_played_string = "How can you exit? You're nowhere near the door!"
 				return last_played_string
+				
+		"quit": 
+			if quitTime == false: 
+				last_played_string = "You can't afford to quit, you need this job!"
+				return last_played_string
+			else: 
+				last_played_string = "Quitting..."
+				return last_played_string
+				#put code to go to main menu HERE 
 		#easter eggs
 		"xyzzy":
 			last_played_string = "'xyzzy' buzzes a bee as it flys by your ear."
