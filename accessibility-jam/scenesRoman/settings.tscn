@@ -13,12 +13,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ypqld")
 
+[node name="Overlay" type="ColorRect" parent="." unique_id=301692834]
+layout_mode = 0
+offset_left = -414.0
+offset_right = 739.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.78431374)
+
 [node name="SettingsContainer" type="VBoxContainer" parent="." unique_id=231128858]
 layout_mode = 0
-offset_left = 125.0
-offset_top = 4.0
-offset_right = 738.0
-offset_bottom = 224.0
+offset_left = -133.0
+offset_top = 182.0
+offset_right = 525.0
+offset_bottom = 511.0
 
 [node name="SizeContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=65640589]
 layout_mode = 2
@@ -40,29 +47,35 @@ text = "AUDIO VOLUME"
 
 [node name="MasterSlider" type="HSlider" parent="SettingsContainer/MasterContainer" unique_id=1155800693]
 layout_mode = 2
-value = 70.0
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="MusicContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1119102018]
 layout_mode = 2
 
-[node name="MusicLabel" type="Label" parent="SettingsContainer/MusicContainer" unique_id=259708399]
+[node name="MusicLabel" type="Label" parent="SettingsContainer/MusicContainer" unique_id=259708399 groups=["Text"]]
 layout_mode = 2
 text = "MUSIC VOLUME"
 
 [node name="MusicSlider" type="HSlider" parent="SettingsContainer/MusicContainer" unique_id=367740052]
 layout_mode = 2
-value = 20.0
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="SFXContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1286500049]
 layout_mode = 2
 
-[node name="SFXLabel" type="Label" parent="SettingsContainer/SFXContainer" unique_id=653097940]
+[node name="SFXLabel" type="Label" parent="SettingsContainer/SFXContainer" unique_id=653097940 groups=["Text"]]
 layout_mode = 2
 text = "SFX VOLUME"
 
 [node name="SFXSlider" type="HSlider" parent="SettingsContainer/SFXContainer" unique_id=399282708]
 layout_mode = 2
-value = 70.0
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="VoiceContainer" type="VBoxContainer" parent="SettingsContainer" unique_id=1251238985]
 layout_mode = 2
