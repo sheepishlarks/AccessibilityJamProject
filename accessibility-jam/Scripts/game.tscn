@@ -95,6 +95,32 @@ script = ExtResource("5_0lpm8")
 [node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
 main_menu_scene_name = "res://MainMenu.tscn"
 
+[node name="SettingsContainer" parent="SettingsLayer/Settings" index="1" unique_id=231128858]
+offset_top = 93.0
+offset_bottom = 500.0
+
+[node name="MicToggle" type="CheckBox" parent="SettingsLayer/Settings/SettingsContainer" index="0" unique_id=1702498096 node_paths=PackedStringArray("mic_player", "audio_to_text")]
+layout_mode = 2
+text = "TOGGLE SPEECH TO TEXT"
+script = ExtResource("11_k4rqo")
+mic_player = NodePath("../../../../CaptureStreamToText/MicPlayer")
+audio_to_text = NodePath("../../../../CaptureStreamToText/CaptureStreamToText")
+
+[node name="MasterSlider" parent="SettingsLayer/Settings/SettingsContainer/MasterContainer" parent_id_path=PackedInt32Array(1768086741, 1627106368) index="1" unique_id=1155800693]
+value = 1.0
+
+[node name="MusicSlider" parent="SettingsLayer/Settings/SettingsContainer/MusicContainer" parent_id_path=PackedInt32Array(1768086741, 1119102018) index="1" unique_id=367740052]
+value = 1.0
+
+[node name="SFXSlider" parent="SettingsLayer/Settings/SettingsContainer/SFXContainer" parent_id_path=PackedInt32Array(1768086741, 1286500049) index="1" unique_id=399282708]
+value = 1.0
+
+[node name="VoiceSlider" parent="SettingsLayer/Settings/SettingsContainer/VoiceContainer" parent_id_path=PackedInt32Array(1768086741, 1251238985) index="1" unique_id=1920344312]
+value = 70.0
+
+[node name="VoiceSlider2" parent="SettingsLayer/Settings/SettingsContainer/VoiceContainer" parent_id_path=PackedInt32Array(1768086741, 1251238985) index="3" unique_id=1220308799]
+value = 1.5
+
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0
 offset_right = 1151.0
@@ -171,7 +197,7 @@ script = ExtResource("10_0lpm8")
 mic_player = NodePath("MicPlayer")
 audio_to_text = NodePath("CaptureStreamToText")
 transcribe_label = NodePath("../Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput")
-mic_toggle = NodePath("HBoxContainer/MicToggle")
+mic_toggle = NodePath("../SettingsLayer/Settings/SettingsContainer/MicToggle")
 
 [node name="MicPlayer" type="AudioStreamPlayer" parent="CaptureStreamToText" unique_id=1605972973]
 stream = SubResource("AudioStreamMicrophone_rhq81")
@@ -180,22 +206,17 @@ bus = &"Record"
 [node name="HBoxContainer" type="HBoxContainer" parent="CaptureStreamToText" unique_id=1565605402]
 layout_mode = 2
 
-[node name="MicToggle" type="CheckBox" parent="CaptureStreamToText/HBoxContainer" unique_id=1702498096 node_paths=PackedStringArray("mic_player", "audio_to_text")]
-layout_mode = 2
-text = "Speech To Text"
-script = ExtResource("11_k4rqo")
-mic_player = NodePath("../../MicPlayer")
-audio_to_text = NodePath("../../CaptureStreamToText")
-
 [node name="CaptureStreamToText" type="SpeechToText" parent="CaptureStreamToText" unique_id=598525342]
 language_model = ExtResource("12_uxuw0")
 vad_model = ExtResource("13_t1w3l")
 script = ExtResource("14_o7lko")
 
+[connection signal="stt_on_off" from="SettingsLayer/Settings/SettingsContainer/MicToggle" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="set_stt_on_off"]
+[connection signal="toggled" from="SettingsLayer/Settings/SettingsContainer/MicToggle" to="SettingsLayer/Settings/SettingsContainer/MicToggle" method="_on_toggled"]
 [connection signal="editing_toggled" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_editing_toggled"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" method="_on_text_submitted"]
-[connection signal="stt_on_off" from="CaptureStreamToText/HBoxContainer/MicToggle" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="set_stt_on_off"]
-[connection signal="toggled" from="CaptureStreamToText/HBoxContainer/MicToggle" to="CaptureStreamToText/HBoxContainer/MicToggle" method="_on_toggled"]
+
+[editable path="SettingsLayer/Settings"]

@@ -146,7 +146,6 @@ text = "Main Menu"
 [connection signal="value_changed" from="SettingsContainer/IDContainer/IDSlider" to="." method="_on_id_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/VoiceContainer/VoiceSlider" to="." method="_on_voice_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/VoiceContainer/VoiceSlider2" to="." method="_on_voice_slider_2_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/SwitchContainer/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
 [connection signal="pressed" from="SettingsBack" to="." method="_on_settings_back_pressed"]
 [connection signal="pressed" from="SettingsMainMenu" to="." method="_on_settings_main_menu_pressed"]
-[connection signal="value_changed" from="SettingsContainer/SwitchContainer/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
-
