@@ -3,6 +3,7 @@ extends Node
 signal response_generated(response_text)
 
 # @onready var sfx =  get_tree().root.find_node("SFX")
+@export var mainmenu = ""
 
 var last_played_string: String
 var current_room = null
@@ -24,7 +25,7 @@ var panSpiced = false
 #gameplay variables
 var objectsDefined = 0
 var gameFinished = false
-var quitTime = false 
+var quitTime = true 
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
 var voice_id = voices[Globals.tts_voice_id]
@@ -161,7 +162,7 @@ func process_command( input: String) -> String:
 					var shelfString = "- A set of " + shelfDef + " to hold all your knicknacks and trinkets. \n"
 					var bedString = "- A " + bedDef + " so comfortable that you’ll have trouble getting out of it in the mornings! \n"
 					var congrats = "Congratulations, and thanks for playing! Type 'quit' to return to menu"
-					
+					quitTime = true
 					last_played_string = intro + doorString + windowString + deskString + bookshelfString + wardrobeString + stoveString + shelfString + bedString + congrats
 					return last_played_string
 				else: 
@@ -177,8 +178,8 @@ func process_command( input: String) -> String:
 				return last_played_string
 			else: 
 				last_played_string = "Quitting..."
+				get_tree().change_scene_to_file("res://MainMenu.tscn")
 				return last_played_string
-				#put code to go to main menu HERE 
 		#easter eggs
 		"xyzzy":
 			last_played_string = "'xyzzy' buzzes a bee as it flys by your ear."
