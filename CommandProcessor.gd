@@ -178,6 +178,7 @@ func process_command( input: String) -> String:
 				return last_played_string
 			else: 
 				last_played_string = "Quitting..."
+				DisplayServer.tts_stop()
 				get_tree().change_scene_to_file("res://MainMenu.tscn")
 				return last_played_string
 		#easter eggs

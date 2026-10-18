@@ -13,10 +13,10 @@
 [ext_resource type="AudioStream" uid="uid://cmhdolo82ct13" path="res://accessibility-jam/assets/sfx/sfx_ticking_clock.wav" id="7_uxuw0"]
 [ext_resource type="Script" uid="uid://bkt8w5ayaa7xe" path="res://STT/stt_setup.gd" id="10_0lpm8"]
 [ext_resource type="Script" uid="uid://ci2nfxoc7o04a" path="res://STT/enable_mic_stt.gd" id="11_k4rqo"]
-[ext_resource type="WhisperResource" uid="uid://b06ivje7gpigr" path="res://addons/godot_whisper/models/ggml-base.en-q8_0.bin" id="12_uxuw0"]
 [ext_resource type="WhisperResource" uid="uid://cv20l6faxdgdt" path="res://addons/godot_whisper/models/ggml-silero-v6.2.0.bin" id="13_t1w3l"]
 [ext_resource type="AudioStream" uid="uid://dnubhlyigbg4a" path="res://accessibility-jam/assets/music/BadAlias - Grace Observatory.mp3" id="13_uxuw0"]
 [ext_resource type="Script" uid="uid://bxx1ya08oo7gx" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="14_o7lko"]
+[ext_resource type="WhisperResource" uid="uid://dqbtk564lw1yi" path="res://addons/godot_whisper/models/ggml-small.en.bin" id="15_uxuw0"]
 
 [sub_resource type="Resource" id="Resource_0lpm8"]
 script = ExtResource("6_k4rqo")
@@ -164,9 +164,6 @@ value = 1.0
 [node name="VoiceSlider" parent="SettingsLayer/Settings/SettingsContainer/VoiceContainer" parent_id_path=PackedInt32Array(1768086741, 1251238985) index="1" unique_id=1920344312]
 value = 70.0
 
-[node name="VoiceSlider2" parent="SettingsLayer/Settings/SettingsContainer/VoiceContainer" parent_id_path=PackedInt32Array(1768086741, 1251238985) index="3" unique_id=1220308799]
-value = 1.5
-
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0
 offset_right = 1151.0
@@ -262,7 +259,7 @@ bus = &"Record"
 layout_mode = 2
 
 [node name="CaptureStreamToText" type="SpeechToText" parent="CaptureStreamToText" unique_id=598525342]
-language_model = ExtResource("12_uxuw0")
+language_model = ExtResource("15_uxuw0")
 vad_model = ExtResource("13_t1w3l")
 script = ExtResource("14_o7lko")
 
