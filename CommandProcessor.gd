@@ -124,6 +124,7 @@ func process_command( input: String) -> String:
 						return last_played_string
 					else: 
 						last_played_string = "What spices?"
+						return last_played_string
 				_: 
 					last_played_string = "Use what?"
 					return last_played_string
