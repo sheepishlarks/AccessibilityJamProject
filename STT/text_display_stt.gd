@@ -1,6 +1,6 @@
 extends LineEdit
 
-##from input script
+###From Input
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	grab_focus()
@@ -10,15 +10,19 @@ func focus() -> void:
 
 func _on_text_submitted(new_text: String) -> void:
 	clear()
+	clear_cashed_stt()
 
-###Speach to Text###
+@export var input: LineEdit
+
+###Speech to Text###
 var stt_on: bool
 var completed_text := ""
 var partial_text := ""
 #var status_text := ""
 
 func update_text() -> void:
-	text =  completed_text + partial_text
+	text = completed_text + partial_text
+	emit_signal("text_changed", text)
 
 func _process(_delta: float) -> void:
 	if stt_on == true:
@@ -28,11 +32,19 @@ func set_stt_on_off(on_off: bool):
 	stt_on = on_off
 	if on_off == false:
 		text = completed_text + partial_text
-		clear_cashed_stt()
+		emit_signal("text_changed", text)
 		completed_text = text
-		selecting_enabled = true
+		partial_text = ""
+		visible = false
+		input.visible = true
+		input.text = completed_text
+		input.emit_signal("text_changed", completed_text)
 	else:
-		completed_text = text
+		completed_text = input.text
+		text = input.text
+		emit_signal("text_changed", text)
+		visible = true
+		input.visible = false
 		
 
 ## is_complete: true when a sentence/window boundary is committed, false when still in progress.

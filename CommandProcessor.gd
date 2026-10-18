@@ -10,6 +10,7 @@ func initialise(starting_room) -> String:
 	
 # Called when the node enters the scene tree for the first time.
 func process_command( input: String) -> String:
+	input = remove_punctuation(input)
 	var words = input.split(" ", false)
 	if words.size() == 0:
 		return "Error: no words were parsed"
@@ -170,3 +171,11 @@ func change_room(new_room: Room) -> String:
 	var strings = new_room.room_description + "\n" + "Exits: " + " ".join(exit_string)
 	#emit_signal("response_generated", strings)
 	return strings
+	
+	
+func remove_punctuation(input: String) -> String:
+	var fixed_string: String = input
+	var punctuation = [",", ".", "!", "?"]
+	for p in punctuation:
+		fixed_string = fixed_string.replace(p, "")
+	return fixed_string

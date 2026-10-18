@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dc6f5sf4oou1o" path="res://game.gd" id="1_anlq1"]
 [ext_resource type="Script" uid="uid://d2mxtsg43he3p" path="res://CommandProcessor.gd" id="2_c25bl"]
+[ext_resource type="Script" uid="uid://ctf5vupa7buq3" path="res://input.gd" id="2_s1me1"]
 [ext_resource type="PackedScene" uid="uid://cosoci44l2iec" path="res://accessibility-jam/scenesRoman/settings_layer.tscn" id="2_y28a1"]
 [ext_resource type="PackedScene" uid="uid://dx3a8apcy52xw" path="res://accessibility-jam/Scripts/room.tscn" id="3_c25bl"]
 [ext_resource type="PackedScene" uid="uid://byylggmtc01p5" path="res://accessibility-jam/scenesRoman/settings.tscn" id="3_mw2w1"]
@@ -115,7 +116,15 @@ text = ">"
 layout_mode = 2
 size_flags_horizontal = 3
 keep_editing_on_text_submit = true
+script = ExtResource("2_s1me1")
+
+[node name="STTInput" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=460329719 node_paths=PackedStringArray("input")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+keep_editing_on_text_submit = true
 script = ExtResource("7_khu1k")
+input = NodePath("../Input")
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
 stream = ExtResource("3_s1me1")
@@ -140,7 +149,7 @@ grow_vertical = 2
 script = ExtResource("10_0lpm8")
 mic_player = NodePath("MicPlayer")
 audio_to_text = NodePath("CaptureStreamToText")
-transcribe_label = NodePath("../Background/MarginContainer/Rows/InputArea/HBoxContainer/Input")
+transcribe_label = NodePath("../Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput")
 mic_toggle = NodePath("HBoxContainer/MicToggle")
 
 [node name="MicPlayer" type="AudioStreamPlayer" parent="CaptureStreamToText" unique_id=1605972973]
@@ -164,5 +173,7 @@ script = ExtResource("14_o7lko")
 
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" method="_on_text_submitted"]
 [connection signal="stt_on_off" from="CaptureStreamToText/HBoxContainer/MicToggle" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="set_stt_on_off"]
 [connection signal="toggled" from="CaptureStreamToText/HBoxContainer/MicToggle" to="CaptureStreamToText/HBoxContainer/MicToggle" method="_on_toggled"]
