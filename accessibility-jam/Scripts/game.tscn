@@ -126,6 +126,7 @@ script = ExtResource("5_0lpm8")
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]
 
 [node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("3_mw2w1")]
+main_menu_scene_name = "res://MainMenu.tscn"
 
 [node name="Background" type="PanelContainer" parent="." unique_id=26014560]
 layout_mode = 0

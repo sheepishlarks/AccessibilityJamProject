@@ -121,6 +121,24 @@ text = "CONTRAST SWITCH"
 layout_mode = 2
 max_value = 1.0
 
+[node name="SettingsBack" type="Button" parent="." unique_id=86334181]
+layout_mode = 0
+offset_left = -132.0
+offset_top = 546.0
+offset_right = 118.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="SettingsMainMenu" type="Button" parent="." unique_id=1313873302]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 546.0
+offset_right = 529.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
 [connection signal="value_changed" from="SettingsContainer/SizeContainer/SizeSlider" to="." method="_on_size_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/MasterContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/MusicContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
@@ -128,4 +146,7 @@ max_value = 1.0
 [connection signal="value_changed" from="SettingsContainer/IDContainer/IDSlider" to="." method="_on_id_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/VoiceContainer/VoiceSlider" to="." method="_on_voice_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/VoiceContainer/VoiceSlider2" to="." method="_on_voice_slider_2_value_changed"]
+[connection signal="pressed" from="SettingsBack" to="." method="_on_settings_back_pressed"]
+[connection signal="pressed" from="SettingsMainMenu" to="." method="_on_settings_main_menu_pressed"]
 [connection signal="value_changed" from="SettingsContainer/SwitchContainer/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
+
