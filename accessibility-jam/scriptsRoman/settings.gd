@@ -77,7 +77,9 @@ func _on_settings_back_pressed() -> void:
 
 @export var main_menu_scene_name : String
 func _on_settings_main_menu_pressed() -> void:
+	DisplayServer.tts_stop()
 	get_tree().change_scene_to_file(main_menu_scene_name)
+	
 func _on_contrast_slider_value_changed(value: float) -> void:
 	for nodes in get_tree().get_nodes_in_group("Text"):
 		nodes.add_theme_font_color_override("font_color", value)
