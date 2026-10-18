@@ -8,6 +8,14 @@
 [ext_resource type="AudioStream" uid="uid://cppmijx8vradi" path="res://accessibility-jam/assets/sfx/sfx_button_click.mp3" id="3_s1me1"]
 [ext_resource type="Script" uid="uid://b8dx2varlavxq" path="res://accessibility-jam/Scripts/room_manager.gd" id="3_y28a1"]
 [ext_resource type="AudioStream" uid="uid://hduig851vp43" path="res://accessibility-jam/assets/music/TestTrackDELETETHISLATER.mp3" id="4_c25bl"]
+[ext_resource type="Script" uid="uid://5ymum033edml" path="res://STT/text_display_stt.gd" id="7_khu1k"]
+[ext_resource type="Script" uid="uid://bkt8w5ayaa7xe" path="res://STT/stt_setup.gd" id="10_0lpm8"]
+[ext_resource type="Script" uid="uid://ci2nfxoc7o04a" path="res://STT/enable_mic_stt.gd" id="11_k4rqo"]
+[ext_resource type="WhisperResource" uid="uid://b06ivje7gpigr" path="res://addons/godot_whisper/models/ggml-base.en-q8_0.bin" id="12_uxuw0"]
+[ext_resource type="WhisperResource" uid="uid://cv20l6faxdgdt" path="res://addons/godot_whisper/models/ggml-silero-v6.2.0.bin" id="13_t1w3l"]
+[ext_resource type="Script" uid="uid://bxx1ya08oo7gx" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="14_o7lko"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_rhq81"]
 
 [node name="Game" type="Control" unique_id=490836244]
 layout_mode = 3
@@ -114,7 +122,15 @@ text = ">"
 layout_mode = 2
 size_flags_horizontal = 3
 keep_editing_on_text_submit = true
+emoji_menu_enabled = false
 script = ExtResource("2_s1me1")
+
+[node name="STTInput" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=460329719]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+keep_editing_on_text_submit = true
+script = ExtResource("7_khu1k")
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="." unique_id=801186288]
 stream = ExtResource("3_s1me1")
@@ -123,5 +139,48 @@ stream = ExtResource("3_s1me1")
 stream = ExtResource("4_c25bl")
 autoplay = true
 
+[node name="CaptureStreamToText" type="VBoxContainer" parent="." unique_id=1629831623 node_paths=PackedStringArray("mic_player", "audio_to_text", "transcribe_label", "mic_toggle")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 236.0
+offset_right = 356.0
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_0lpm8")
+mic_player = NodePath("MicPlayer")
+audio_to_text = NodePath("CaptureStreamToText")
+transcribe_label = NodePath("../Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput")
+mic_toggle = NodePath("HBoxContainer/MicToggle")
+
+[node name="MicPlayer" type="AudioStreamPlayer" parent="CaptureStreamToText" unique_id=1605972973]
+stream = SubResource("AudioStreamMicrophone_rhq81")
+bus = &"Record"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CaptureStreamToText" unique_id=1565605402]
+layout_mode = 2
+
+[node name="MicToggle" type="CheckBox" parent="CaptureStreamToText/HBoxContainer" unique_id=1702498096 node_paths=PackedStringArray("mic_player", "audio_to_text")]
+layout_mode = 2
+text = "Speech To Text"
+script = ExtResource("11_k4rqo")
+mic_player = NodePath("../../MicPlayer")
+audio_to_text = NodePath("../../CaptureStreamToText")
+
+[node name="CaptureStreamToText" type="SpeechToText" parent="CaptureStreamToText" unique_id=598525342]
+language_model = ExtResource("12_uxuw0")
+vad_model = ExtResource("13_t1w3l")
+script = ExtResource("14_o7lko")
+
+[connection signal="editing_toggled" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_editing_toggled"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/STTInput" method="_on_text_submitted"]
+[connection signal="stt_on_off" from="CaptureStreamToText/HBoxContainer/MicToggle" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="set_stt_on_off"]
+[connection signal="toggled" from="CaptureStreamToText/HBoxContainer/MicToggle" to="CaptureStreamToText/HBoxContainer/MicToggle" method="_on_toggled"]

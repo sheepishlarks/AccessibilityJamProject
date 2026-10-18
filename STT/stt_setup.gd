@@ -1,15 +1,17 @@
 extends VBoxContainer
 
-@onready var mic_player: AudioStreamPlayer = $MicPlayer
-@onready var audio_to_text: CaptureStreamToText = $CaptureStreamToText
-@onready var transcribe_label: RichTextLabel = $Panel/Label
-@onready var mic_toggle: CheckBox = $HBoxContainer/MicToggle
+@export var mic_player: AudioStreamPlayer 
+@export var audio_to_text: CaptureStreamToText 
+@export var transcribe_label: LineEdit 
+@export var mic_toggle: CheckBox 
 
 func _ready():
 	mic_player.bus = "Record"
 	audio_to_text.transcribed_msg_tokens.connect(transcribe_label._on_capture_stream_to_text_transcribed_msg_tokens)
 	audio_to_text.emit_current_status()
 	_start_initial_source.call_deferred()
+	
+	mic_toggle.stt_on_off.connect(transcribe_label.set_stt_on_off)
 
 
 func _start_initial_source() -> void:
