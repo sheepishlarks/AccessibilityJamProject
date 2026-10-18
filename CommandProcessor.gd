@@ -11,7 +11,7 @@ var windowDef = "something else..."
 var deskDef = "something else..."
 var bookshelfDef = "something else..."
 var wardrobeDef = "something else..."
-var doorDef = "What are those things called again? The swingy-open things, the ones you put the keys in. Maybe that should be the first thing in the room that you [define]."
+var doorDef = "empty"
 var stoveDef = "something else..."
 var shelfDef = "something else..."
 var bedDef = "something else..."
@@ -19,6 +19,10 @@ var bedDef = "something else..."
 # special variables 
 var curtainsOpen = false 
 var panSpiced = false;
+
+#gameplay variables
+var objectsDefined = 0
+var gameFinished = false; 
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
 var voice_id = voices[0]
@@ -85,6 +89,13 @@ func process_command( input: String) -> String:
 					else: 
 						last_played_string = "You can't find any curtains."
 						return last_played_string
+				"door", "doorDef": 
+					if current_room.room_name == "South":
+						last_played_string = "You open the door. And then you close it. Gotta stay focused."
+						return last_played_string
+					else:
+						last_played_string = "You can't reach one of those."
+						return last_played_string
 				_: 
 					last_played_string = "Open what?"
 					return last_played_string
@@ -134,6 +145,18 @@ func process_command( input: String) -> String:
 				_: 
 					last_played_string = "Use what?"
 					return last_played_string
+					
+		"leave", "exit": 
+			if current_room.room_name == "South": 
+				if gameFinished == true: 
+					last_played_string = windowDef + " " + deskDef + " " + bookshelfDef + " " + wardrobeDef + " " + doorDef + " " + stoveDef + " " + shelfDef + " " + bedDef
+					return last_played_string
+				else: 
+					last_played_string = "You can't leave yet! Your job is on the line here!"
+					return last_played_string
+			else: 
+				last_played_string = "How can you exit? You're nowhere near the door!"
+				return last_played_string
 		#easter eggs
 		"xyzzy":
 			last_played_string = "'xyzzy' buzzes a bee as it flys by your ear."
@@ -207,10 +230,16 @@ func go(second_word: String) -> String:
 			return "Go where?"
 
 func help() -> String:
-	return "TEMP Command List: ect ect"
+	return "Useful commands: Go [Direction], Listen, Feel, Smell, Taste, Define[Object you want to name]"
 
 func status() -> String:
-	return "TEMP you have defined x objects, there are still x to define. you are in a location with things in it"
+	var objectsLeft = 8 - objectsDefined
+	var output = "You have defined " + str(objectsDefined) + " objects, there are still " + str(objectsLeft) + " to define. \n"
+	if current_room.room_defined == false: 
+		output = output + current_room.room_description
+	else: 
+		output = output + current_room.room_description_defined
+	return output
 
 func feel(sense: String, second_word: String):
 	#is the second word a valid object?
@@ -457,31 +486,43 @@ func define(words: Array[String]) -> String:
 		"North": 
 			if windowDef == "something else...": 
 				windowDef = Objectname
+				current_room.define_room(windowDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + windowDef
 		"South": 
-			if doorDef == "What are those things called again? The swingy-open things, the ones you put the keys in. Maybe that should be the first thing in the room that you [define]": 
+			if doorDef == "empty": 
 				doorDef = Objectname
+				current_room.define_room(doorDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + doorDef
 		"South East": 
 			if wardrobeDef == "something else...": 
 				wardrobeDef = Objectname
+				current_room.define_room(wardrobeDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + wardrobeDef
 		"South West": 
 			if stoveDef == "something else...": 
 				stoveDef = Objectname
+				current_room.define_room(stoveDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + stoveDef
 		"North East": 
 			if deskDef == "something else...": 
 				deskDef = Objectname
+				current_room.define_room(deskDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + deskDef
 		"North West": 
 			if bedDef == "something else...": 
 				bedDef = Objectname
+				current_room.define_room(bedDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + bedDef
 		"Centre": 
@@ -489,14 +530,20 @@ func define(words: Array[String]) -> String:
 		"East": 
 			if bookshelfDef == "something else...": 
 				bookshelfDef = Objectname
+				current_room.define_room(bookshelfDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + bookshelfDef
 		"West": 
 			if shelfDef == "something else...": 
 				shelfDef = Objectname
+				current_room.define_room(shelfDef)
+				objectsDefined += 1
 			else: 
 				return "You already defined it! That's a " + shelfDef
-	
+	if objectsDefined == 8: 
+		gameFinished = true
+		return "Before you is the %s" % Objectname + "\n You have defined everything! Bask in the glory of not getting fired, then move back south and 'exit' to finish up!"
 	return "Before you is the %s" % Objectname
 	
 
@@ -504,9 +551,14 @@ func change_room(new_room: Room) -> String:
 	current_room = new_room
 	var exit_string = PackedStringArray([new_room.exits.keys()])
 	#var exit_string2.join(exit_string)
-	var strings = new_room.room_description + "\n" + "Exits: " + " ".join(exit_string)
+	if new_room.room_defined == true: 
+		var strings = new_room.room_description_defined + "\n" + "Exits: " + " ".join(exit_string)
+		return strings
+	else: 
+		var strings = new_room.room_description + "\n" + "Exits: " + " ".join(exit_string)
+		return strings
 	#emit_signal("response_generated", strings)
-	return strings
+	#return strings
 	
 	
 func remove_punctuation(input: String) -> String:

@@ -36,45 +36,54 @@ script = ExtResource("3_y28a1")
 [node name="North" parent="RoomManager" unique_id=1907899534 instance=ExtResource("3_c25bl")]
 room_name = "North"
 room_description = "There is space on every side of you, except for the North, where you can feel a wall, and something else..."
+room_description_defined = "There is space on every side of you, except for the North, where you can feel a wall, and the  "
 roomItems = ["Unobject", "curtains", "plant", "plant pot"]
 
 [node name="South" parent="RoomManager" unique_id=1726959315 instance=ExtResource("3_c25bl")]
 room_name = "South"
-room_description = "There is space on every side of you, except for the South, where you can feel a wall, and the "
+room_description = "There is space on every side of you, except for the South, where you can feel a wall, and the place you entered from. What are those things called again? The swingy-open things, the ones you put the keys in. Maybe that should be the first thing in the room that you 'define'."
+room_description_defined = "There is space on every side of you, except for the South, where you can feel a wall, and the "
 roomItems = ["Door", "piss"]
 
 [node name="SouthEast" parent="RoomManager" unique_id=43429430 instance=ExtResource("3_c25bl")]
 room_name = "South East"
 room_description = "You’re standing in a corner, you can feel space to the North and West of you. You can also feel... Something else."
+room_description_defined = "You’re standing in a corner, you can feel space to the North and West of you. You can also feel the "
 roomItems = ["Unobject", "clothes"]
 
 [node name="SouthWest" parent="RoomManager" unique_id=545583940 instance=ExtResource("3_c25bl")]
 room_name = "South West"
 room_description = "You’re standing in a corner, you can feel space to the North and East of you. You can also feel... Something else"
+room_description_defined = "You’re standing in a corner, you can feel space to the North and East of you. You can also feel the "
 roomItems = ["Unobject", "spices", "pan"]
 
 [node name="NorthEast" parent="RoomManager" unique_id=1105538475 instance=ExtResource("3_c25bl")]
 room_name = "North East"
 room_description = "You’re standing in a corner, you can feel space to the South and West of you. You can also feel... something else."
+room_description_defined = "You’re standing in a corner, you can feel space to the South and West of you. You can also feel the "
 roomItems = ["Unobject", "computer", "chair"]
 
 [node name="NorthWest" parent="RoomManager" unique_id=591973925 instance=ExtResource("3_c25bl")]
-room_name = "North East"
+room_name = "North West"
 room_description = "You’re standing in a corner, you can feel space to the South and East of you. You can also feel... Something else"
+room_description_defined = "You’re standing in a corner, you can feel space to the South and East of you. You can also feel the "
 roomItems = ["Unobject", "plushie", "blankets"]
 
 [node name="Centre" parent="RoomManager" unique_id=456425252 instance=ExtResource("3_c25bl")]
 room_name = "Centre"
 room_description = "There is space on every side of you."
+room_description_defined = "There is space on every side of you."
 
 [node name="East" parent="RoomManager" unique_id=868202480 instance=ExtResource("3_c25bl")]
 room_name = "East"
 room_description = "There is space on every side of you, except for the East, where you can feel a wall, and something else..."
+room_description_defined = "There is space on every side of you, except for the East, where you can feel a wall, and the "
 roomItems = ["Unobject", "books"]
 
 [node name="West" parent="RoomManager" unique_id=671322397 instance=ExtResource("3_c25bl")]
 room_name = "West"
-room_description = "There is space on every side of you, except for the West, where you can feel a wall, and {something else…}"
+room_description = "There is space on every side of you, except for the West, where you can feel a wall, and something else…"
+room_description_defined = "There is space on every side of you, except for the West, where you can feel a wall, and the "
 roomItems = ["Unobject", "crystal ball"]
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=849453455]

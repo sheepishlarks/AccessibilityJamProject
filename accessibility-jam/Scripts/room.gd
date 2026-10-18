@@ -28,5 +28,6 @@ func connect_exit(direction: String, room: Room):
 		_: 
 			printerr("Tried to connect to invalid direction: %s", direction)
 			
-func define_room(definition: String, room: Room): 
-	pass
+func define_room(definition: String): 
+	room_defined = true
+	room_description_defined = room_description_defined + definition
