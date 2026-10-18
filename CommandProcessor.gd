@@ -39,8 +39,8 @@ func process_command( input: String) -> String:
 	if words.size() == 0:
 		return "Error: no words were parsed"
 	
-	var first_word = words[0].to_lower()
-	var second_word = ""
+	var first_word: String= words[0].to_lower()
+	var second_word: String = ""
 	if words.size() > 1:
 		second_word = words[1].to_lower()
 	
@@ -54,7 +54,7 @@ func process_command( input: String) -> String:
 			return last_played_string
 		
 		#senses
-		"smell", "touch", "feel", "taste", "listen", "hear":
+		"smell", "touch", "feel", "taste", "eat", "listen", "hear":
 			last_played_string = feel(first_word, second_word)
 			return last_played_string
 		
@@ -230,7 +230,7 @@ func go(second_word: String) -> String:
 			return "Go where?"
 
 func help() -> String:
-	return "Useful commands: Go [Direction], Listen, Feel, Smell, Taste, Define[Object you want to name]"
+	return "Command List: go[direction], touch/hear/smell/taste[optional object], define[object], help, status, replay"
 
 func status() -> String:
 	var objectsLeft = 8 - objectsDefined
@@ -253,11 +253,11 @@ func feel(sense: String, second_word: String):
 						return "You breathe in a bit too deeply and get a nose full of old smoke. These will need a wash before the apartment can sell."
 					"touch", "feel": 
 						return "The material feels light and slightly coarse, with two or three layers of fabric to it. You guess that they might be linen or cotton."
-					"taste": 
+					"taste", "eat": 
 						return "A little dry for your taste. Too difficult to rip a bite from, and bits of fabric get stuck in your teeth. You make a mental note not to eat here again."
 					"listen", "hear": 
 						return "You hear a breeze rustling the fabric back and forth. It reminds you of a swinging pendulum."
-			"plant": 
+			"plant", "pot": 
 				match sense: 
 					"smell": 
 						if curtainsOpen == true: 
@@ -269,7 +269,7 @@ func feel(sense: String, second_word: String):
 							return "You can feel a large number of cool, smooth strands growing out in all directions."
 						else:
 							return "Well, it feels like there’s a plant *behind* the curtain, but any details are impossible to make out."
-					"taste": 
+					"taste", "eat": 
 						if curtainsOpen == true: 
 							return "Well that’s kind of playing with fire, isn’t it? What if this is one of those *toxic house plants*?"
 						else:
@@ -285,7 +285,7 @@ func feel(sense: String, second_word: String):
 						return "Well, it certainly *smells* like someone has spent a lot of time sitting here. For better or for worse."
 					"touch", "feel": 
 						return "The mix of mesh and backboard feel very ergonomic, and the leather is the real deal. This thing is expensive."
-					"taste": 
+					"taste", "eat": 
 						return "You gently nibble on the topmost part of the seat, which tastes undeniably like what the inside of an IKEA feels like. A word flashes in your mind: BÄSTBOLL."
 					"listen", "hear": 
 						return "The chair rolls a little in the darkness, lightly swivelling lightly back and forth. "
@@ -295,17 +295,17 @@ func feel(sense: String, second_word: String):
 						return "Something smells a little acrid, but you quickly realise it’s probably the work of some type of machinery."
 					"touch", "feel": 
 						return "The computer’s surface is matte and emits a week heat. You can feel little bumps in its design, but they don’t seem to do anything."
-					"taste": 
+					"taste", "eat": 
 						return "You get a sharp shock to your tongue. You would ideally prefer *not* to do that again, but could see it happening if the urge overtook you once more."
 					"listen", "hear": 
 						return "There’s a gentle, consistent whir. Every so often a little beep intersperses with the sound."		
-			"books": 
+			"books", "book": 
 				match sense: 
 					"smell": 
 						return "You pick up a book that smells brand-new, like it’s only just been bought."
 					"touch", "feel": 
 						return "You pick up a book whose pages are worn. Whoever lived here last must be missing it now."
-					"taste": 
+					"taste", "eat": 
 						return "You pick up a book and take a tentative bite out of it. Tastes like eating a muffin wrapper, but bad."
 					"listen", "hear": 
 						return "You pick up a book and hear that its pages are rustling. Must’ve been the wind?"
@@ -318,20 +318,20 @@ func feel(sense: String, second_word: String):
 							return "Whatever’s cooking, it smells good. Since the original tenant’s gone, it’s probably free rein – right?"
 					"touch", "feel": 
 						return "You shoogle the handle of the pan a little, carefully so that you don’t accidentally spill anything."
-					"taste": 
+					"taste", "eat": 
 						if panSpiced == true: 
 							return "For the briefest of moments, you are no longer standing in a pitch-dark, recently abandoned studio apartment. You feel yourself *exiting* yourself, rising higher and higher, beyond the slit in the North wall where the noise comes in and up, up, up, ever higher. The sky opens itself to you; a stellar, sparkling vista that has long been waiting for the culinarily enlightened to join their midst. You begin to lose track of the time, spending what might be hours or what might be years savouring this single, blessed flavour. And then in a blink it’s over. You’re back in the dark, with a job to do. But *damn* was that good. "
 						else: 
 							return "…Hmm. It smells better than it tastes. It’s thick, like a curry or a kind of stew, but it’s almost certainly missing something."
 					"listen", "hear": 
 						return "Something is bubbling away leisurely. An intense electrical hum is emanating from underneath the pan."					
-			"spices": 
+			"spices", "spice": 
 				match sense: 
 					"smell": 
 						return "You smell every spice, all at once. It is simultaneously heavenly and overwhelming. Your eyes water a little, but you weren’t exactly using them right now anyway."
 					"touch", "feel": 
 						return "Each individual container feels weighty and well-stocked for how little they are."
-					"taste": 
+					"taste", "eat": 
 						return "Some of these taste a lot nicer on their own than others. It doesn’t matter which you enjoyed the most, every flavour gives way to an all-consuming peppery heat."
 					"listen", "hear": 
 						return "All is quiet on the cayenne front. And the salt, pepper, paprika, oregano, basil, parsley, and thyme front. Honestly, you’re just intuiting these names based on each spice’s unique brand of silence."	
@@ -341,27 +341,27 @@ func feel(sense: String, second_word: String):
 						return "You sniff really, really hard, but it just smells like pondering the orb."
 					"touch", "feel": 
 						return "You feel a curved, glassy surface. It’s big, bigger than your hand, and it’s completely smooth the whole way round. There’s an odd chill to it that isn’t congruent with the temperature of the room."
-					"taste": 
+					"taste", "eat": 
 						return "Your mouth is full of ‘crystal’. It tastes like knowledge and regret. And a little bit like sugar. "
 					"listen", "hear": 
 						return "Are those whispering noises kinda eerie? Are they saying something? Or have you just not gotten enough sleep?"	
-			"plushie": 
+			"plushie", "plushies": 
 				match sense: 
 					"smell": 
 						return "Breathing in the scent of the bear’s fur feels invasive, like you’re stealing it from somebody else."
 					"touch", "feel": 
 						return "There’s a softness to the bear that makes you feel a little vulnerable. You don’t want to let go."
-					"taste": 
+					"taste", "eat": 
 						return "It tastes like new soap, and like a love to outlive the ages. Somebody was clearly invested in keeping this little guy in good condition."
 					"listen", "hear": 
 						return "This little toy bear can’t talk, but the silence holds a thousand memories."	
-			"blankets": 
+			"blankets","blanket": 
 				match sense: 
 					"smell": 
 						return "Breathing in the scent of the bear’s fur feels invasive, like you’re stealing it from somebody else."
 					"touch", "feel": 
 						return "You’ve never felt anything so fluffy, almost sheeplike. You would take it home with you if being found out wouldn’t get you fired on the spot"
-					"taste": 
+					"taste", "eat": 
 						return "You thoughtfully ponder the taste of the blankets. It’s not the worst you’ve ever tried, but it’s not the best, either. You settle on a 6/10."
 					"listen", "hear": 
 						return "You could swear that the blankets and pillows are inviting you to lie down. The urge to flop onto them is overwhelming, but you have to persist whilst the job is incomplete. "
@@ -370,7 +370,7 @@ func feel(sense: String, second_word: String):
 	elif second_word == current_room.room_name:
 		pass
 	else:
-		return "You can't smell that."
+		return "You can't %s that." % sense
 		
 	#what sense are you using?
 	match sense:
@@ -424,7 +424,7 @@ func feel(sense: String, second_word: String):
 				_: 
 					return "TEMP you touch %s" % second_word
 		
-		"taste":
+		"taste", "eat":
 			match current_room.room_name: 
 				"South": 
 					return "You taste the thousands of hands that have touched this before. Gives a whole new meaning to ‘a new lick of paint’."
@@ -458,7 +458,7 @@ func feel(sense: String, second_word: String):
 				"East": 
 					return "Whatever this thing is, you feel like it’s got some stories to tell..."
 				"South East": 
-					return "If these wardrobes could talk..."
+					return "Nothing but crickets and moths."
 				"South West": 
 					return "You can hear a faint humming of electricity."
 				"West": 
@@ -469,6 +469,8 @@ func feel(sense: String, second_word: String):
 					return "Away from the walls, you don’t hear much. There’s a ‘fwsh, fwsh’ sort of sound overhead, and the faint ticking of a clock coming from the wall to the west."				
 				_: 
 					return "TEMP you hear %s" % second_word
+		_:
+			return "TEMP How did you manage to get this responce????"
 
 func define(words: Array[String]) -> String:
 	# check if object has already been defined
