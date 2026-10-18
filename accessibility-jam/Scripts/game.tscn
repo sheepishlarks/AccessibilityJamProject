@@ -16,6 +16,39 @@
 [ext_resource type="WhisperResource" uid="uid://cv20l6faxdgdt" path="res://addons/godot_whisper/models/ggml-silero-v6.2.0.bin" id="13_t1w3l"]
 [ext_resource type="Script" uid="uid://bxx1ya08oo7gx" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="14_o7lko"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4rqo"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lpm8"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxuw0"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7lko"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1w3l"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_autcl"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pn0q"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7ekb"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixrdp"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nd2v"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkd46"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_rhq81"]
 
 [node name="Game" type="Control" unique_id=490836244]
@@ -26,9 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_anlq1")
-message = "You are an estate agent on a mission; there’s this studio apartment that your boss is desperate to see sold after yet another tenant has packed up and left in the middle of the night.  "
-message2 = "One problem though – it’s pitch-dark in there. The lights are busted, and unlike estate agents, electricians can’t be called out to work until the sun comes up. Your boss is breathing down your neck to get this property appraised ASAP, so there’s really nothing else for it. "
-message4 = "You’ll need to rely on your senses other than sight to figure out what these are. Good luck! "
+message = "You are an estate agent on a mission; there’s this studio apartment that your boss is desperate to see sold after yet another tenant has packed up and left in the middle of the night.  One problem though – it’s pitch-dark in there. The lights are busted, and unlike estate agents, electricians can’t be called out to work until the sun comes up. Your boss is breathing down your neck to get this property appraised ASAP, so there’s really nothing else for it. You’ve got the keys, you’ve climbed the stairs, now all you need to do is catalogue the room’s amenities. These are the big things – pieces of furniture/utilities that take up space, not the trinkets and knickknacks on top of them. There are 8 in total; one in each cardinal direction (to the North, East, South etc.). You’ll need to rely on your senses other than sight to figure out what these are. Good luck! "
 
 [node name="CommandProcessor" type="Node" parent="." unique_id=514267733]
 script = ExtResource("2_c25bl")
@@ -100,6 +131,7 @@ script = ExtResource("5_0lpm8")
 layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4rqo")
 
 [node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=469036646]
 layout_mode = 2
@@ -114,6 +146,7 @@ layout_mode = 2
 [node name="GameInfo" type="PanelContainer" parent="Background/MarginContainer/Rows" unique_id=756171120]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0lpm8")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo" unique_id=380249187]
 layout_mode = 2
@@ -125,17 +158,24 @@ size_flags_vertical = 3
 
 [node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows" unique_id=1199391424]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uxuw0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea" unique_id=1695007812]
 layout_mode = 2
 
 [node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1029121566 groups=["Text"]]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9019608, 0.9019608, 0.9254902, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_o7lko")
+theme_override_styles/focus = SubResource("StyleBoxFlat_t1w3l")
 text = ">"
 
 [node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1650877976 groups=["Text"]]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_autcl")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_4pn0q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_f7ekb")
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 script = ExtResource("2_s1me1")
@@ -144,6 +184,9 @@ script = ExtResource("2_s1me1")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ixrdp")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_0nd2v")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mkd46")
 keep_editing_on_text_submit = true
 script = ExtResource("7_khu1k")
 

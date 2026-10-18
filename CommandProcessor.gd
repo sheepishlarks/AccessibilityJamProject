@@ -149,7 +149,18 @@ func process_command( input: String) -> String:
 		"leave", "exit": 
 			if current_room.room_name == "South": 
 				if gameFinished == true: 
-					last_played_string = windowDef + " " + deskDef + " " + bookshelfDef + " " + wardrobeDef + " " + doorDef + " " + stoveDef + " " + shelfDef + " " + bedDef
+					var intro = "Half-Light Properties is delighted to bring to market this well-presented, 5th floor studio apartment.\n This attractive single-room property offers an excellent opportunity for first time buyers, featuring amenities such as: \n "
+					var doorString = "- A sturdy " + doorDef + " guaranteed to protect you and your privacy. \n "
+					var windowString = "- A large " + windowDef + " offering you a wonderful view of the street. \n"
+					var deskString = "- A sturdy " + doorDef + " for you to work on. \n"
+					var bookshelfString = "- A lofty " + bookshelfDef + "with a small library’s worth of books in it for your perusal. \n"
+					var wardrobeString = "- A spacious " + wardrobeDef + "to hang your clothes in. \n"
+					var stoveString = "- A state-of-the-art " + stoveDef + "for all your culinary needs. \n"
+					var shelfString = "- A set of " + shelfDef + " to hold all your knicknacks and trinkets. \n"
+					var bedString = "- A " + bedDef + " so comfortable that you’ll have trouble getting out of it in the mornings! \n"
+					var congrats = "Congratulations, and thanks for playing!"
+					
+					last_played_string = intro + doorString + windowString + deskString + bookshelfString + wardrobeString + stoveString + shelfString + bedString + congrats
 					return last_played_string
 				else: 
 					last_played_string = "You can't leave yet! Your job is on the line here!"

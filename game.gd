@@ -5,10 +5,6 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 
 @export var max_lines_remembered := 30
 @export var message = "enter starting message here!"
-@export var message2 = "enter starting message here!"
-@export var message3 = "enter starting message here!"
-@export var message4 = "enter starting message here!"
-@export var message5 = "\n"
 
 @onready var history_rows = $Background/MarginContainer/Rows/GameInfo/ScrollContainer/HistoryRows
 @onready var command_processor = $CommandProcessor
@@ -27,10 +23,6 @@ func _ready() -> void:
 	#starting_message.text = message
 	#add_response_to_game(starting_message)
 	handle_response_generated(message)
-	handle_response_generated(message2)
-	handle_response_generated(message3)
-	handle_response_generated(message4)
-	handle_response_generated(message5)
 	command_processor.response_generated.connect(handle_response_generated)
 	var starting_room_response = command_processor.initialise(room_manager.get_child(1))
 	handle_response_generated(starting_room_response)
@@ -41,6 +33,7 @@ func _ready() -> void:
 
 	#add_response_to_game(starting_message)
 	DisplayServer.tts_speak(message, voice_id, Globals.tts_volume_value, 1.0, Globals.tts_speed_value)
+
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
