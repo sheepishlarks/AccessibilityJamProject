@@ -24,6 +24,8 @@ driver/enable_input=true
 [autoload]
 
 Globals="*uid://duwn4tt8gbn5h"
+SoundEffects="*uid://c2iynb23sgbdd"
+AudioManager="*uid://cmjwoe75dqnjm"
 
 [display]
 

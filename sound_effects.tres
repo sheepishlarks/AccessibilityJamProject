@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SoundFX" format=3 uid="uid://dpb5uxuawpx66"]
+
+[ext_resource type="Script" uid="uid://c2iynb23sgbdd" path="res://accessibility-jam/Scripts/sound_effects.gd" id="1_h8sef"]
+[ext_resource type="AudioStream" uid="uid://cmhdolo82ct13" path="res://accessibility-jam/assets/sfx/sfx_ticking_clock.wav" id="2_bvkkf"]
+
+[resource]
+script = ExtResource("1_h8sef")
+sound_effect = ExtResource("2_bvkkf")
+metadata/_custom_type_script = "uid://c2iynb23sgbdd"

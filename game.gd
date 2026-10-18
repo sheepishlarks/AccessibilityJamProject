@@ -10,8 +10,6 @@ const InputResponse = preload("res://accessibility-jam/UI/input_response.tscn")
 @onready var command_processor = $CommandProcessor
 @onready var room_manager = $RoomManager
 
-@onready var sfx = $SFXPlayer
-
 @onready var tts_id: int = $SettingsLayer/Settings.id_value
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
@@ -34,6 +32,9 @@ func _ready() -> void:
 	#add_response_to_game(starting_message)
 	DisplayServer.tts_speak(message, voice_id, Globals.tts_volume_value, 1.0, Globals.tts_speed_value)
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_left"):
+		AudioManager.play_audio(SoundFX.SOUND_EFFECTS.TICK)
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty(): 
@@ -51,7 +52,6 @@ func handle_response_generated(response_text: String):
 	response.text = response_text
 	add_response_to_game(response)
 #=======
-	sfx.play()
 #>>>>>>> 86f4d3a42f3b98f755167f94c988200248746450
 
 func delete_history_beyond_limit(): 

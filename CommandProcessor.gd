@@ -275,7 +275,6 @@ func feel(sense: String, second_word: String):
 					"smell": 
 						return "You breathe in a bit too deeply and get a nose full of old smoke. These will need a wash before the apartment can sell."
 					"touch", "feel":
-						# sfx.play()
 						return "The material feels light and slightly coarse, with two or three layers of fabric to it. You guess that they might be linen or cotton."
 					"taste", "eat": 
 						return "A little dry for your taste. Too difficult to rip a bite from, and bits of fabric get stuck in your teeth. You make a mental note not to eat here again."
