@@ -30,6 +30,8 @@ var quitTime = true
 var voices = DisplayServer.tts_get_voices_for_language("en")
 var voice_id = voices[Globals.tts_voice_id]
 
+func _ready():
+	last_played_string = "You are an estate agent on a mission; there’s this studio apartment that your boss is desperate to see sold after yet another tenant has packed up and left in the middle of the night.  One problem though – it’s pitch-dark in there. The lights are busted, and unlike estate agents, electricians can’t be called out to work until the sun comes up. Your boss is breathing down your neck to get this property appraised ASAP, so there’s really nothing else for it. You’ve got the keys, you’ve climbed the stairs, now all you need to do is catalogue the room’s amenities. These are the big things – pieces of furniture/utilities that take up space, not the trinkets and knickknacks on top of them. There are 8 in total; one in each cardinal direction (to the North, East, South etc.). You’ll need to rely on your senses other than sight to figure out what these are. Good luck! Type [help] if you're stuck and [replay] if you want to hear again."
 
 func initialise(starting_room) -> String: 
 	return change_room(starting_room)

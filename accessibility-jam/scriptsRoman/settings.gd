@@ -16,7 +16,7 @@ var voice_id
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pause_menu.hide()
-	get_tree().set_group("Text", "font_size", $SettingsContainer/SizeContainer/SizeSlider.value)
+	get_tree().set_group("Text", "font_size", $SettingsContainer/SizeContainer/SizeSlider.value * 20)
 	
 	$SettingsContainer/MasterContainer/MasterSlider.value = AudioServer.get_bus_volume_db(MASTER_BUS_ID)
 	$SettingsContainer/MusicContainer/MusicSlider.value = AudioServer.get_bus_volume_db(MUSIC_BUS_ID)
