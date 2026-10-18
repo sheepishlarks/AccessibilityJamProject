@@ -16,6 +16,39 @@
 [ext_resource type="WhisperResource" uid="uid://cv20l6faxdgdt" path="res://addons/godot_whisper/models/ggml-silero-v6.2.0.bin" id="13_t1w3l"]
 [ext_resource type="Script" uid="uid://bxx1ya08oo7gx" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="14_o7lko"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4rqo"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lpm8"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxuw0"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7lko"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1w3l"]
+bg_color = Color(0.05490196, 0.05490196, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_autcl"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pn0q"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7ekb"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixrdp"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nd2v"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkd46"]
+bg_color = Color(0.21568628, 0.21568628, 0.36078432, 1)
+
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_rhq81"]
 
 [node name="Game" type="Control" unique_id=490836244]
@@ -125,6 +158,7 @@ value = 1.5
 layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4rqo")
 
 [node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=469036646]
 layout_mode = 2
@@ -139,6 +173,7 @@ layout_mode = 2
 [node name="GameInfo" type="PanelContainer" parent="Background/MarginContainer/Rows" unique_id=756171120]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0lpm8")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo" unique_id=380249187]
 layout_mode = 2
@@ -150,17 +185,24 @@ size_flags_vertical = 3
 
 [node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows" unique_id=1199391424]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uxuw0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea" unique_id=1695007812]
 layout_mode = 2
 
 [node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1029121566 groups=["Text"]]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9019608, 0.9019608, 0.9254902, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_o7lko")
+theme_override_styles/focus = SubResource("StyleBoxFlat_t1w3l")
 text = ">"
 
 [node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer" unique_id=1650877976 groups=["Text"]]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_autcl")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_4pn0q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_f7ekb")
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 script = ExtResource("2_s1me1")
@@ -169,6 +211,9 @@ script = ExtResource("2_s1me1")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ixrdp")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_0nd2v")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mkd46")
 keep_editing_on_text_submit = true
 script = ExtResource("7_khu1k")
 

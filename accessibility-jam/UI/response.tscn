@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d0etr287a5uq5"]
 
 [node name="Response" type="Label" unique_id=1597887958 groups=["Text"]]
+theme_override_colors/font_color = Color(0.9019608, 0.9019608, 0.9254902, 1)
 text = "this is what the game will give back"
 autowrap_mode = 2
