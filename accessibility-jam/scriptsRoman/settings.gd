@@ -9,8 +9,6 @@ class_name Settings
 var paused = false
 
 @onready var id_value: int
-@onready var volume_value: int
-@onready var speed_value: float = 1
 
 var voices = DisplayServer.tts_get_voices_for_language("en")
 var voice_id
@@ -19,12 +17,20 @@ var voice_id
 func _ready() -> void:
 	pause_menu.hide()
 	get_tree().set_group("Text", "font_size", $SettingsContainer/SizeContainer/SizeSlider.value)
+	
+	$SettingsContainer/MasterContainer/MasterSlider.value = AudioServer.get_bus_volume_db(MASTER_BUS_ID)
+	$SettingsContainer/MusicContainer/MusicSlider.value = AudioServer.get_bus_volume_db(MUSIC_BUS_ID)
+	$SettingsContainer/SFXContainer/SFXSlider.value = AudioServer.get_bus_volume_db(SFX_BUS_ID)
+	
 	AudioServer.set_bus_volume_db(MASTER_BUS_ID, linear_to_db($SettingsContainer/MasterContainer/MasterSlider.value))
 	AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db($SettingsContainer/MusicContainer/MusicSlider.value))
 	AudioServer.set_bus_volume_db(SFX_BUS_ID, linear_to_db($SettingsContainer/SFXContainer/SFXSlider.value))
-	id_value = $SettingsContainer/VoiceContainer/IDSlider.value
-	volume_value = $SettingsContainer/VoiceContainer/VoiceSlider.value
-	speed_value = $SettingsContainer/VoiceContainer/VoiceSlider2.value
+
+	
+	$SettingsContainer/IDContainer/IDSlider.value = Globals.tts_voice_id
+	$SettingsContainer/VoiceContainer/VoiceSlider.value = Globals.tts_volume_value
+	$SettingsContainer/VoiceContainer/VoiceSlider2.value = Globals.tts_speed_value
+	$SettingsContainer/VoiceContainer/VoiceSlider2.value = Globals.tts_speed_value
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -55,18 +61,16 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 	# play example sfx
 
 func _on_id_slider_value_changed(value: int) -> void:
-	id_value = value
-	voice_id = voices[id_value]
+	Globals.tts_voice_id = value
 	# DisplayServer.tts_speak("Testing audio.", voice_id, volume_value, 1.0, speed_value)
 
 func _on_voice_slider_value_changed(value: int) -> void:
-	volume_value = value
+	Globals.tts_volume_value = value
 	# DisplayServer.tts_speak("Testing audio.", voice_id, volume_value, 1.0, speed_value)
 
 func _on_voice_slider_2_value_changed(value: float) -> void:
-	speed_value = value
+	Globals.tts_speed_value = value
 	# DisplayServer.tts_speak("Testing audio.", voice_id, volume_value, 1.0, speed_value)
-
 
 func _on_settings_back_pressed() -> void:
 	pauseMenu()
@@ -74,3 +78,6 @@ func _on_settings_back_pressed() -> void:
 @export var main_menu_scene_name : String
 func _on_settings_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file(main_menu_scene_name)
+func _on_contrast_slider_value_changed(value: float) -> void:
+	for nodes in get_tree().get_nodes_in_group("Text"):
+		nodes.add_theme_font_color_override("font_color", value)

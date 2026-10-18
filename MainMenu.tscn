@@ -42,6 +42,7 @@ text = "Start"
 alignment = 0
 
 [node name="Settings" type="Button" parent="." unique_id=1368209699]
+visible = false
 layout_mode = 1
 offset_left = 50.0
 offset_top = 350.0
@@ -55,18 +56,31 @@ alignment = 0
 [node name="Quit" type="Button" parent="." unique_id=986450594]
 layout_mode = 1
 offset_left = 50.0
-offset_top = 450.0
+offset_top = 350.0
 offset_right = 300.0
-offset_bottom = 505.0
+offset_bottom = 405.0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kjwba")
 text = "Quit"
 alignment = 0
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=2099804980]
+visible = false
 
 [node name="Settings" parent="SettingsLayer" unique_id=1768086741 instance=ExtResource("2_eiy7p")]
 main_menu_scene_name = "res://MainMenu.tscn"
+
+[node name="SettingsContainer" parent="SettingsLayer/Settings" index="1" unique_id=231128858]
+offset_top = 182.0
+offset_bottom = 511.0
+
+[node name="IDLabel" parent="SettingsLayer/Settings/SettingsContainer/VoiceContainer" parent_id_path=PackedInt32Array(1768086741, 1251238985) index="0" unique_id=1768392854 groups=["Text"]]
+layout_mode = 2
+text = "VOICE TYPE"
+
+[node name="IDSlider" parent="SettingsLayer/Settings/SettingsContainer/VoiceContainer" parent_id_path=PackedInt32Array(1768086741, 1251238985) index="1" unique_id=73397919]
+layout_mode = 2
+max_value = 1.0
 
 [node name="SettingsMainMenu" parent="SettingsLayer/Settings" index="3" unique_id=1313873302]
 visible = false
@@ -74,5 +88,6 @@ visible = false
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="SettingsLayer/Settings/SettingsContainer/VoiceContainer/IDSlider" to="SettingsLayer/Settings" method="_on_id_slider_value_changed"]
 
 [editable path="SettingsLayer/Settings"]
